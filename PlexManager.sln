@@ -1,0 +1,52 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.9.34622.214
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PlexManager", "PlexManager\PlexManager.csproj", "{81A9DCBD-FEF7-4475-87A9-07B97877E983}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "lib", "lib", "{96BDCBD2-EDA5-4007-8691-B4A9A5B03337}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Plex.Library", "lib\plex-api\Source\Plex.Library\Plex.Library.csproj", "{D5DF53DF-49E0-471B-B0D2-643E7DB81E5B}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Plex.ServerApi", "lib\plex-api\Source\Plex.ServerApi\Plex.ServerApi.csproj", "{88A17F02-B9F0-49FD-AF7B-9FF36BD9FDA4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PlexAPI", "lib\PlexAPI\PlexAPI.csproj", "{A5D8D011-FA6F-489D-8EC2-B0B9F8E520D7}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{81A9DCBD-FEF7-4475-87A9-07B97877E983}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{81A9DCBD-FEF7-4475-87A9-07B97877E983}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{81A9DCBD-FEF7-4475-87A9-07B97877E983}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{81A9DCBD-FEF7-4475-87A9-07B97877E983}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{81A9DCBD-FEF7-4475-87A9-07B97877E983}.Release|Any CPU.Build.0 = Release|Any CPU
+		{81A9DCBD-FEF7-4475-87A9-07B97877E983}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{D5DF53DF-49E0-471B-B0D2-643E7DB81E5B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D5DF53DF-49E0-471B-B0D2-643E7DB81E5B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D5DF53DF-49E0-471B-B0D2-643E7DB81E5B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D5DF53DF-49E0-471B-B0D2-643E7DB81E5B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{88A17F02-B9F0-49FD-AF7B-9FF36BD9FDA4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{88A17F02-B9F0-49FD-AF7B-9FF36BD9FDA4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{88A17F02-B9F0-49FD-AF7B-9FF36BD9FDA4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{88A17F02-B9F0-49FD-AF7B-9FF36BD9FDA4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A5D8D011-FA6F-489D-8EC2-B0B9F8E520D7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A5D8D011-FA6F-489D-8EC2-B0B9F8E520D7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A5D8D011-FA6F-489D-8EC2-B0B9F8E520D7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A5D8D011-FA6F-489D-8EC2-B0B9F8E520D7}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{D5DF53DF-49E0-471B-B0D2-643E7DB81E5B} = {96BDCBD2-EDA5-4007-8691-B4A9A5B03337}
+		{88A17F02-B9F0-49FD-AF7B-9FF36BD9FDA4} = {96BDCBD2-EDA5-4007-8691-B4A9A5B03337}
+		{A5D8D011-FA6F-489D-8EC2-B0B9F8E520D7} = {96BDCBD2-EDA5-4007-8691-B4A9A5B03337}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {01C0FF69-DAA6-432E-A36D-CA6056C4AC0A}
+	EndGlobalSection
+EndGlobal

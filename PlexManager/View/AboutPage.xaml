@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="PlexManager.View.AboutPage"
+             xmlns:model="clr-namespace:PlexManager.Model"
+             xmlns:viewmodel="clr-namespace:PlexManager.ViewModel"
+             xmlns:mi="http://www.aathifmahir.com/dotnet/2022/maui/icons"
+             x:DataType="viewmodel:AboutViewModel"
+             Title="About">
+    
+    <VerticalStackLayout>
+        <CollectionView ItemsSource="{Binding Groups}">
+            <CollectionView.ItemTemplate>
+                <DataTemplate x:DataType="model:AboutGroup">
+
+                    <Border Padding="10" Margin="10" StrokeShape="RoundRectangle 10">
+                        <VerticalStackLayout>
+                            <HorizontalStackLayout Margin="0,0,0,10">
+                                <Label
+                                    Text="{Binding Name}"
+                                    FontSize="22"
+                                    SemanticProperties.HeadingLevel="Level3"
+                                    HorizontalTextAlignment="Start" />
+                            </HorizontalStackLayout>
+
+                            <CollectionView ItemsSource="{Binding Items}">
+                                <CollectionView.ItemTemplate>
+                                    <DataTemplate x:DataType="model:AboutItem">
+                                        <Grid Margin="0,0,0,8">
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="60" />
+                                                <ColumnDefinition Width="*" />
+                                                <ColumnDefinition Width="20" />
+                                            </Grid.ColumnDefinitions>
+                                            <Grid.GestureRecognizers>
+                                                <TapGestureRecognizer
+                                                    Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:AboutViewModel}}, Path=OpenURLCommand}"
+                                                    CommandParameter="{Binding Url}"
+                                                    />
+                                            </Grid.GestureRecognizers>
+                                            <Border
+                                                Grid.Column="0"
+                                                StrokeShape="RoundRectangle 30"
+                                                Stroke="Black"
+                                                StrokeThickness="0"
+                                                HeightRequest="50"
+                                                WidthRequest="50"
+                                                Margin="0,8,0,0">
+
+                                                <Image 
+                                                    Aspect="AspectFill"
+                                                    HeightRequest="50"
+                                                    WidthRequest="50"
+                                                    HorizontalOptions="Center"
+                                                    VerticalOptions="Center"
+                                                    Source="{Binding Icon}" 
+                                                    />
+                                            </Border>
+
+                                            <VerticalStackLayout VerticalOptions="Center" Margin="15,0,0,0" Grid.Column="1">
+                                                <Label Text="{Binding Name}" FontSize="18" TextColor="Gray"/>
+                                                <Label Text="{Binding Description}" FontSize="14" TextColor="Gray"/>
+                                            </VerticalStackLayout>
+
+                                            <Image Grid.Column="2" Aspect="Center" Source="{mi:Material ArrowForwardIos}" HorizontalOptions="End" />
+                                        </Grid>
+                                    </DataTemplate>
+                                </CollectionView.ItemTemplate>
+                            </CollectionView>
+
+                        </VerticalStackLayout>
+                    </Border>
+                    
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+    </VerticalStackLayout>
+</ContentPage>

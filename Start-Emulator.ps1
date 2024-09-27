@@ -1,0 +1,1 @@
+& "C:\Program Files (x86)\Android\android-sdk\emulator\emulator.exe" -netfast -verbose -avd "pixel_6_-_api_34" -prop "monodroid.avdname=pixel_6_-_api_34" -prop "emu.uuid=1879cb88-72f1-47f5-86e9-3abf1545340e" -feature -Vulkan

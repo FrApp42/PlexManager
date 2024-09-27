@@ -1,0 +1,6 @@
+https://python-plexapi.readthedocs.io/en/latest/_modules/plexapi/myplex.html#MyPlexAccount
+https://www.plexopedia.com/plex-media-server/api/server/list/
+
+
+
+https://enisn-projects.io/docs/en/uranium/latest/Getting-Started
