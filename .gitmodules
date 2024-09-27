@@ -1,0 +1,3 @@
+[submodule "lib/plex-api"]
+	path = lib/plex-api
+	url = https://github.com/jensenkd/plex-api
