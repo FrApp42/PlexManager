@@ -23,7 +23,7 @@
 		<ApplicationTitle>PlexManager</ApplicationTitle>
 
 		<!-- App Identifier -->
-		<ApplicationId>com.companyname.plexmanager</ApplicationId>
+		<ApplicationId>fr.frapp42.plexmanager</ApplicationId>
 
 		<!-- Versions -->
 		<ApplicationDisplayVersion>1.0</ApplicationDisplayVersion>
@@ -40,42 +40,42 @@
 	</PropertyGroup>
 
 	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net8.0-ios|AnyCPU'">
-	  <ApplicationId>it.odawa.plexmanager</ApplicationId>
+	  <ApplicationId>fr.frapp42.plexmanager</ApplicationId>
 	  <ApplicationDisplayVersion>0.1</ApplicationDisplayVersion>
 	</PropertyGroup>
 
 	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net8.0-maccatalyst|AnyCPU'">
-	  <ApplicationId>it.odawa.plexmanager</ApplicationId>
+	  <ApplicationId>fr.frapp42.plexmanager</ApplicationId>
 	  <ApplicationDisplayVersion>0.1</ApplicationDisplayVersion>
 	</PropertyGroup>
 
 	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net8.0-android34.0|AnyCPU'">
-	  <ApplicationId>it.odawa.plexmanager</ApplicationId>
+	  <ApplicationId>fr.frapp42.plexmanager</ApplicationId>
 	  <ApplicationDisplayVersion>0.1</ApplicationDisplayVersion>
 	</PropertyGroup>
 
 	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net8.0-windows10.0.19041.0|AnyCPU'">
-	  <ApplicationId>it.odawa.plexmanager</ApplicationId>
+	  <ApplicationId>fr.frapp42.plexmanager</ApplicationId>
 	  <ApplicationDisplayVersion>0.1</ApplicationDisplayVersion>
 	</PropertyGroup>
 
 	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net8.0-ios|AnyCPU'">
-	  <ApplicationId>it.odawa.plexmanager</ApplicationId>
+	  <ApplicationId>fr.frapp42.plexmanager</ApplicationId>
 	  <ApplicationDisplayVersion>0.1</ApplicationDisplayVersion>
 	</PropertyGroup>
 
 	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net8.0-maccatalyst|AnyCPU'">
-	  <ApplicationId>it.odawa.plexmanager</ApplicationId>
+	  <ApplicationId>fr.frapp42.plexmanager</ApplicationId>
 	  <ApplicationDisplayVersion>0.1</ApplicationDisplayVersion>
 	</PropertyGroup>
 
 	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net8.0-android34.0|AnyCPU'">
-	  <ApplicationId>it.odawa.plexmanager</ApplicationId>
+	  <ApplicationId>fr.frapp42.plexmanager</ApplicationId>
 	  <ApplicationDisplayVersion>0.1</ApplicationDisplayVersion>
 	</PropertyGroup>
 
 	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net8.0-windows10.0.19041.0|AnyCPU'">
-	  <ApplicationId>it.odawa.plexmanager</ApplicationId>
+	  <ApplicationId>fr.frapp42.plexmanager</ApplicationId>
 	  <ApplicationDisplayVersion>0.1</ApplicationDisplayVersion>
 	</PropertyGroup>
 

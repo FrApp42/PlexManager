@@ -1,10 +1,8 @@
-﻿using PlexAPI;
+﻿using FrApp42.Web.API;
 using PlexAPI.Models.Account;
-using PlexAPI.Models.HttpRequest;
 using PlexAPI.Statics;
 using System.Net;
 using System.Net.NetworkInformation;
-using System.Xml.Serialization;
 
 namespace PlexAPI.Services
 {
@@ -17,7 +15,7 @@ namespace PlexAPI.Services
         public async Task<bool> Auth(string username, string password, string mfa = null)
         {
             SignIn signIn = new SignIn() 
-            { 
+            {
                 login = username,
                 password = password,
                 verificationCode = mfa
@@ -25,10 +23,9 @@ namespace PlexAPI.Services
 
             ApiRequest request = new ApiRequest(URLs.SignIn);
             request
-                .AddHeader("X-Plex-Client-Identifier", "PlexManager")
+                .AddPlexClientIdentifier()
                 .AcceptJson()
                 .AddJsonBody(signIn);
-                ;
 
             return ValidateAccount(await request.Run<Account>());
         }
@@ -36,14 +33,13 @@ namespace PlexAPI.Services
         public async Task<bool> Auth(string oauth)
         {
 
-            if(await Ping(oauth))
+            if (await Ping(oauth))
             {
                 ApiRequest request = new ApiRequest(URLs.User);
                 request
-                    .AcceptJson()
-                    .AddHeader("X-Plex-Client-Identifier", "PlexManager")
+                    .AddPlexClientIdentifier()
                     .AddPlexToken(oauth)
-                    ;
+                    .AcceptJson();
 
                 return ValidateAccount(await request.Run<Account>());
             }           
@@ -75,10 +71,9 @@ namespace PlexAPI.Services
         {
             ApiRequest request = new ApiRequest(URLs.Ping);
             request
-                .AcceptJson()
-                .AddHeader("X-Plex-Client-Identifier", "PlexManager")
                 .AddPlexToken(oauth)
-                ;
+                .AddPlexClientIdentifier()
+                .AcceptJson();
 
             Result<Ping> result = await request.Run<Ping>();
 
@@ -95,9 +90,8 @@ namespace PlexAPI.Services
 
             ApiRequest request = new ApiRequest(URLs.Servers);
             request
-                .AddHeader("X-Plex-Client-Identifier", "PlexManager")
-                .AddHeader("X-Plex-Token", _account.AuthToken)
-                ;
+                .AddPlexClientIdentifier()
+                .AddPlexToken(_account.AuthToken);
 
             Result<Servers> servers = await request.Run<Servers>();
 
@@ -108,6 +102,5 @@ namespace PlexAPI.Services
 
             return _servers;
         }
-
     }
 }
