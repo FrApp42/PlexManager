@@ -40,7 +40,7 @@ namespace PlexManager.ViewModel
                     {
                         new AboutItem()
                         {
-                            Name = "sikelio",
+                            Name = "Sikelio",
                             Description = "Original application author",
                             Icon = "https://github.com/sikelio.png?size=50",
                             Url = "https://github.com/sikelio"
@@ -48,7 +48,7 @@ namespace PlexManager.ViewModel
                         new AboutItem()
                         {
                             Name = "AnthoDingo",
-                            Description = "This application author",
+                            Description = "Co-Author",
                             Icon = "https://github.com/AnthoDingo.png?size=50",
                             Url = "https://github.com/AnthoDingo"
                         }
