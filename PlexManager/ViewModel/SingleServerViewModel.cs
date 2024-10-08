@@ -59,7 +59,7 @@ namespace PlexManager.ViewModel
         private async Task CopyMachineId(string machineId)
         {
             await Clipboard.Default.SetTextAsync(machineId);
-            await Application.Current.MainPage.DisplayAlert("Success", "You've copied the machine id", "OK");
+            await Application.Current.MainPage.DisplayAlert("Machine ID", "Machine ID copied to clipboard!", "OK");
         }
     }
 }

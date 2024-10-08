@@ -73,7 +73,7 @@ namespace PlexManager.ViewModel
         {
             string serverJson = JsonConvert.SerializeObject(server);
 
-            await Shell.Current.GoToAsync($"{nameof(SingleServer)}?server={Uri.EscapeDataString(serverJson)}");
+            await Shell.Current.GoToAsync($"{nameof(SingleServerPage)}?server={Uri.EscapeDataString(serverJson)}");
         }
     }
 }

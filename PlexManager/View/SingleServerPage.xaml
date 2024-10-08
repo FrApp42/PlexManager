@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="PlexManager.View.SingleServer"
+             x:Class="PlexManager.View.SingleServerPage"
              xmlns:viewmodel="clr-namespace:PlexManager.ViewModel"
              x:DataType="viewmodel:SingleServerViewModel"
-             Title="SingleServer">
+             Title="SingleServerPage">
     <VerticalStackLayout>
         <Grid Margin="0,10,0,0">
             <Grid.RowDefinitions>

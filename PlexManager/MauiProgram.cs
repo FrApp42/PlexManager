@@ -49,7 +49,7 @@ namespace PlexManager
                 .AddSingleton<AboutViewModel>()
                 .AddSingleton<ClaimTokenPage>()
                 .AddSingleton<ClaimTokenViewModel>()
-                .AddSingleton<SingleServer>()
+                .AddSingleton<SingleServerPage>()
                 .AddSingleton<SingleServerViewModel>()
                 //.AddSingleton(apiOptions)
                 //.AddTransient<IPlexServerClient, PlexServerClient>()

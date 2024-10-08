@@ -124,7 +124,7 @@
 	  <MauiXaml Update="View\ServersPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="View\SingleServer.xaml">
+	  <MauiXaml Update="View\SingleServerPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	</ItemGroup>
@@ -135,6 +135,9 @@
 	  </Compile>
 	  <Compile Update="View\ClaimTokenPage.xaml.cs">
 	    <DependentUpon>ClaimTokenPage.xaml</DependentUpon>
+	  </Compile>
+	  <Compile Update="View\SingleServerPage.xaml.cs">
+	    <DependentUpon>SingleServerPage.xaml</DependentUpon>
 	  </Compile>
 	</ItemGroup>
 
