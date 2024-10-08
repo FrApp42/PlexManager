@@ -2,6 +2,8 @@
 using PlexManager.View;
 using PlexAPI;
 using System.Diagnostics;
+using CommunityToolkit.Mvvm.Input;
+using Newtonsoft.Json;
 
 namespace PlexManager.ViewModel
 {
@@ -64,6 +66,14 @@ namespace PlexManager.ViewModel
                 }
                 
             }            
+        }
+
+        [RelayCommand]
+        private async Task NavigateToServer(Server server)
+        {
+            string serverJson = JsonConvert.SerializeObject(server);
+
+            await Shell.Current.GoToAsync($"{nameof(SingleServer)}?server={Uri.EscapeDataString(serverJson)}");
         }
     }
 }

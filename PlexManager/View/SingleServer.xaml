@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="PlexManager.View.SingleServer"
+             xmlns:viewmodel="clr-namespace:PlexManager.ViewModel"
+             x:DataType="viewmodel:SingleServerViewModel"
+             Title="SingleServer">
+    <VerticalStackLayout>
+        <Grid Margin="0,10,0,0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+
+            <Label Text="{Binding Server.Name}"
+                   Grid.Row="0"
+                   HorizontalOptions="Center"
+                   FontSize="Title" />
+
+            <ScrollView Grid.Row="1">
+                <Border Padding="15" Margin="10" StrokeShape="RoundRectangle 5">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+
+                        <Label Text="Identity"
+                               Grid.Row="0"
+                               FontSize="Medium"
+                               HorizontalOptions="Center"
+                               Margin="0,0,0,10" />
+
+                        <Grid Grid.Row="1">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+
+                            <Label Text="PMS Version: "
+                                   HorizontalOptions="Start"
+                                   Grid.Column="0" />
+
+                            <Label Text="Coming soon..."
+                                   FontAttributes="Italic"
+                                   HorizontalOptions="End"
+                                   Grid.Column="1" />
+                        </Grid>
+
+                        <Grid Grid.Row="2">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+
+                            <Label Text="Machine ID: "
+                                   HorizontalOptions="Start"
+                                   Grid.Column="0" />
+
+                            <Label Text="Coming soon..."
+                                   FontAttributes="Italic"
+                                   HorizontalOptions="End"
+                                   Grid.Column="1" />
+                        </Grid>
+
+                        <Grid Grid.Row="3">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+
+                            <Label Text="Plex Pass: "
+                                   HorizontalOptions="Start"
+                                   Grid.Column="0" />
+
+                            <Label Text="Coming soon..."
+                                   FontAttributes="Italic"
+                                   HorizontalOptions="End"
+                                   Grid.Column="1" />
+                        </Grid>
+                    </Grid>
+                </Border>
+            </ScrollView>
+        </Grid>
+    </VerticalStackLayout>
+</ContentPage>

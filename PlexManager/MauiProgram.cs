@@ -41,7 +41,7 @@ namespace PlexManager
             //};
 
             var services = builder.Services;
-           services
+            services
                 .AddSingleton<IConnectivity>(Connectivity.Current)
                 .AddSingleton<ServersPage>()
                 .AddSingleton<ServersViewModel>()
@@ -49,6 +49,8 @@ namespace PlexManager
                 .AddSingleton<AboutViewModel>()
                 .AddSingleton<ClaimTokenPage>()
                 .AddSingleton<ClaimTokenViewModel>()
+                .AddSingleton<SingleServer>()
+                .AddSingleton<SingleServerViewModel>()
                 //.AddSingleton(apiOptions)
                 //.AddTransient<IPlexServerClient, PlexServerClient>()
                 //.AddTransient<IPlexAccountClient, PlexAccountClient>()
