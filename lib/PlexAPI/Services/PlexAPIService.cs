@@ -1,5 +1,6 @@
 ﻿using FrApp42.Web.API;
 using PlexAPI.Models.Account;
+using PlexAPI.Models.Servers;
 using PlexAPI.Statics;
 using System.Net;
 using System.Net.NetworkInformation;
@@ -101,6 +102,28 @@ namespace PlexAPI.Services
             }
 
             return _servers;
+        }
+
+        public async Task<ServerCapabilities?> GetServerCapabilities(Server server)
+        {
+            if (_account == null)
+                throw new Exception("You must Authenticate first !");
+
+            ApiRequest request = new ApiRequest(URLs.ServerCapabilities(server));
+            request
+                .AddPlexClientIdentifier()
+                .AddPlexToken(_account.AuthToken);
+
+            Result<ServerCapabilities> serverCapabilities = await request.Run<ServerCapabilities>();
+
+            switch (serverCapabilities.StatusCode)
+            {
+                case (int)HttpStatusCode.OK:
+                    return serverCapabilities.Value;
+                case (int)HttpStatusCode.Unauthorized:
+                default:
+                    return null;
+            }
         }
     }
 }

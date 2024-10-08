@@ -12,5 +12,9 @@
 
         internal static string Ping = $"{BaseURL}/v2/ping";
 
+        internal static string ServerCapabilities(Server server)
+        {
+            return $"{server.Scheme}://{server.Address}:{server.Port}";
+        }
     }
 }

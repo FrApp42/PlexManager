@@ -4,9 +4,11 @@ namespace PlexManager.View;
 
 public partial class SingleServer : ContentPage
 {
-	public SingleServer(SingleServerViewModel viewModel)
+    public SingleServer(SingleServerViewModel viewModel)
 	{
 		InitializeComponent();
 		BindingContext = viewModel;
+
+		NavigatedTo += viewModel.Loaded;
 	}
 }

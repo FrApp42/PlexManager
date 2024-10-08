@@ -1,4 +1,6 @@
-﻿namespace PlexAPI
+﻿using PlexAPI.Models.Servers;
+
+namespace PlexAPI
 {
     public interface IPlexAPI
     {
@@ -11,5 +13,7 @@
         public Task<bool> Ping(string oauth);
 
         public Task<List<Server>> GetServers();
+
+        public Task<ServerCapabilities?> GetServerCapabilities(Server server);
     }
 }

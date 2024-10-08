@@ -35,48 +35,51 @@
 
                         <Grid Grid.Row="1">
                             <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="*" />
-                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="1*" />
+                                <ColumnDefinition Width="2*" />
                             </Grid.ColumnDefinitions>
 
                             <Label Text="PMS Version: "
                                    HorizontalOptions="Start"
                                    Grid.Column="0" />
 
-                            <Label Text="Coming soon..."
-                                   FontAttributes="Italic"
+                            <Label Text="{Binding Capabilities.Version}"
                                    HorizontalOptions="End"
                                    Grid.Column="1" />
                         </Grid>
 
                         <Grid Grid.Row="2">
                             <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="*" />
-                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="1*" />
+                                <ColumnDefinition Width="2*" />
                             </Grid.ColumnDefinitions>
 
                             <Label Text="Machine ID: "
                                    HorizontalOptions="Start"
                                    Grid.Column="0" />
 
-                            <Label Text="Coming soon..."
-                                   FontAttributes="Italic"
+                            <Label Text="{Binding Capabilities.MachineIdentifier}"
+                                   LineBreakMode="TailTruncation"
                                    HorizontalOptions="End"
-                                   Grid.Column="1" />
+                                   Grid.Column="1">
+                                <Label.GestureRecognizers>
+                                    <TapGestureRecognizer Command="{Binding CopyMachineIdCommand}"
+                                                          CommandParameter="{Binding Capabilities.MachineIdentifier}" />
+                                </Label.GestureRecognizers>
+                            </Label>
                         </Grid>
 
                         <Grid Grid.Row="3">
                             <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="*" />
-                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="1*" />
+                                <ColumnDefinition Width="2*" />
                             </Grid.ColumnDefinitions>
 
                             <Label Text="Plex Pass: "
                                    HorizontalOptions="Start"
                                    Grid.Column="0" />
 
-                            <Label Text="Coming soon..."
-                                   FontAttributes="Italic"
+                            <Label Text="{Binding Capabilities.HasPlexPass}"
                                    HorizontalOptions="End"
                                    Grid.Column="1" />
                         </Grid>

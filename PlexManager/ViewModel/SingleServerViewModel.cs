@@ -1,6 +1,9 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
 using Newtonsoft.Json;
 using PlexAPI;
+using PlexAPI.Models.Servers;
+using PlexManager.View;
 
 namespace PlexManager.ViewModel
 {
@@ -13,13 +16,14 @@ namespace PlexManager.ViewModel
         [ObservableProperty]
         private Server _server;
 
+        [ObservableProperty]
+        private ServerCapabilities _capabilities;
+
         IPlexAPI _plexAPI;
 
         public SingleServerViewModel(IPlexAPI plexAPI)
         {
             _plexAPI = plexAPI;
-
-            
         }
 
         partial void OnServerJsonChanged(string value)
@@ -27,14 +31,35 @@ namespace PlexManager.ViewModel
             Server = JsonConvert.DeserializeObject<Server>(value);
         }
 
-        private async void LoadServerData()
+        public async void Loaded(object? sender, NavigatedToEventArgs e)
         {
             await LoadServerIdentity();
         }
 
         private async Task LoadServerIdentity()
         {
+            string? oauthToken = await SecureStorage.Default.GetAsync("oauth_token");
 
+            if (string.IsNullOrEmpty(oauthToken))
+            {
+                await Shell.Current.GoToAsync(nameof(ClaimTokenPage));
+                return;
+            }
+
+            try
+            {
+                Capabilities = await _plexAPI.GetServerCapabilities(Server);
+            }
+            catch (Exception ex)
+            {
+            }
+        }
+
+        [RelayCommand]
+        private async Task CopyMachineId(string machineId)
+        {
+            await Clipboard.Default.SetTextAsync(machineId);
+            await Application.Current.MainPage.DisplayAlert("Success", "You've copied the machine id", "OK");
         }
     }
 }
