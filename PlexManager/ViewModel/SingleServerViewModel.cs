@@ -1,4 +1,6 @@
-﻿using CommunityToolkit.Mvvm.ComponentModel;
+﻿using CommunityToolkit.Maui.Alerts;
+using CommunityToolkit.Maui.Core;
+using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using Newtonsoft.Json;
 using PlexAPI;
@@ -82,7 +84,15 @@ namespace PlexManager.ViewModel
         private async Task CopyMachineId(string machineId)
         {
             await Clipboard.Default.SetTextAsync(machineId);
-            await Application.Current.MainPage.DisplayAlert("Machine ID", "Machine ID copied to clipboard!", "OK");
+
+            CancellationTokenSource cancellationTokenSource = new();
+
+            string text = "Machine ID copied to clipboard";
+            double fontSize = 14;
+
+            ToastDuration duration = ToastDuration.Short;
+            IToast toast = Toast.Make(text, duration, fontSize);
+            await toast.Show(cancellationTokenSource.Token);
         }
     }
 }
