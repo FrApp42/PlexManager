@@ -147,5 +147,27 @@ namespace PlexAPI.Services
                     return null;
             }
         }
+
+        public async Task<bool> UpdateAllServerLibraries(Server server)
+        {
+            if (_account == null)
+                throw new Exception("You must Authenticate first !");
+
+            ApiRequest request = new(URLs.UpdateAllServerLibraries(server));
+            request
+                .AddPlexClientIdentifier()
+                .AddPlexToken(_account.AuthToken);
+
+            Result<object> result = await request.Run<object>();
+
+            switch (result.StatusCode)
+            {
+                case (int)HttpStatusCode.OK:
+                    return true;
+                case (int)HttpStatusCode.Unauthorized:
+                default:
+                    return false;
+            }
+        }
     }
 }

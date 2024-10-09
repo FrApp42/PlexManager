@@ -17,5 +17,7 @@ namespace PlexAPI
         public Task<ServerCapabilities?> GetServerCapabilities(Server server);
 
         public Task<ServerLibraries?> GetServerLibraries(Server server);
+
+        public Task<bool> UpdateAllServerLibraries(Server server);
     }
 }

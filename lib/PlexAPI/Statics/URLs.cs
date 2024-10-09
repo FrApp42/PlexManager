@@ -21,5 +21,10 @@
         {
             return $"{server.Scheme}://{server.Address}:{server.Port}/library/sections";
         }
+
+        internal static string UpdateAllServerLibraries(Server server)
+        {
+            return $"{server.Scheme}://{server.Address}:{server.Port}/library/sections/all/refresh";
+        }
     }
 }

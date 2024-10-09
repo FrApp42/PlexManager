@@ -87,11 +87,24 @@ namespace PlexManager.ViewModel
 
             CancellationTokenSource cancellationTokenSource = new();
 
-            string text = "Machine ID copied to clipboard";
-            double fontSize = 14;
+            IToast toast = Toast.Make("Machine ID copied to clipboard", ToastDuration.Short, 14);
+            await toast.Show(cancellationTokenSource.Token);
+        }
 
-            ToastDuration duration = ToastDuration.Short;
-            IToast toast = Toast.Make(text, duration, fontSize);
+        [RelayCommand]
+        private async Task UpdateAllLibraries(Server server)
+        {
+            bool updateSuccess = await _plexAPI.UpdateAllServerLibraries(server);
+            string message;
+
+            if (updateSuccess)
+                message = "All libraries are being updated";
+            else
+                message = "Error while trying to update all libraries";
+
+            CancellationTokenSource cancellationTokenSource = new();
+
+            IToast toast = Toast.Make(message, ToastDuration.Short, 14);
             await toast.Show(cancellationTokenSource.Token);
         }
     }
