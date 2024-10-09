@@ -11,6 +11,7 @@ public partial class SingleServerPage : ContentPage
 
 		BindingContext = viewModel;
 		NavigatedTo += viewModel.Loaded;
+        NavigatedFrom += viewModel.Unloaded;
 
         _ = new MauiIcon();
     }

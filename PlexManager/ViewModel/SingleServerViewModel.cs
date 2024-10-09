@@ -13,6 +13,9 @@ namespace PlexManager.ViewModel
     public partial class SingleServerViewModel : ObservableObject
     {
         [ObservableProperty]
+        private bool _isLoading = true;
+
+        [ObservableProperty]
         private string _serverJson;
 
         [ObservableProperty]
@@ -41,9 +44,23 @@ namespace PlexManager.ViewModel
 
         public async void Loaded(object? sender, NavigatedToEventArgs e)
         {
-            await LoadServerCapabilities();
-            await LoadServerLibraries();
-            await LoadServerUsers();
+            IsLoading = true;
+
+            try
+            {
+                await LoadServerCapabilities();
+                await LoadServerLibraries();
+                await LoadServerUsers();
+            }
+            finally
+            {
+                IsLoading = false;
+            }
+        }
+
+        public void Unloaded(object? sender, NavigatedFromEventArgs e)
+        {
+            IsLoading = true;
         }
 
         private async Task LoadServerCapabilities()
