@@ -1,8 +1,6 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using PlexAPI;
-using PlexManager.Database;
-using PlexManager.Model;
 using PlexManager.View;
 
 namespace PlexManager.ViewModel
