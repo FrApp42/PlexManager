@@ -26,5 +26,10 @@
         {
             return $"{server.Scheme}://{server.Address}:{server.Port}/library/sections/all/refresh";
         }
+
+        internal static string ServerUserList(Server server)
+        {
+            return $"{server.Scheme}://{server.Address}:{server.Port}/accounts";
+        }
     }
 }

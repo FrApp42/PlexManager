@@ -24,6 +24,9 @@ namespace PlexManager.ViewModel
         [ObservableProperty]
         private ServerLibraries _libraries;
 
+        [ObservableProperty]
+        private ServerUserList _userList;
+
         IPlexAPI _plexAPI;
 
         public SingleServerViewModel(IPlexAPI plexAPI)
@@ -40,6 +43,7 @@ namespace PlexManager.ViewModel
         {
             await LoadServerCapabilities();
             await LoadServerLibraries();
+            await LoadServerUsers();
         }
 
         private async Task LoadServerCapabilities()
@@ -56,7 +60,7 @@ namespace PlexManager.ViewModel
             {
                 Capabilities = await _plexAPI.GetServerCapabilities(Server);
             }
-            catch (Exception ex)
+            catch
             {
             }
         }
@@ -75,7 +79,32 @@ namespace PlexManager.ViewModel
             {
                 Libraries = await _plexAPI.GetServerLibraries(Server);
             }
-            catch (Exception ex)
+            catch
+            {
+            }
+        }
+
+        private async Task LoadServerUsers()
+        {
+            string? oauthToken = await SecureStorage.Default.GetAsync("oauth_token");
+
+            if (string.IsNullOrEmpty(oauthToken))
+            {
+                await Shell.Current.GoToAsync(nameof(ClaimTokenPage));
+                return;
+            }
+
+            try
+            {
+                ServerUserList userList = await _plexAPI.GetServerUserList(Server);
+                userList.Users = [.. userList
+                    .Users
+                    .Where(u => !string.IsNullOrEmpty(u.Name))
+                    .OrderBy(u => u.Name)];
+
+                UserList = userList;
+            }
+            catch
             {
             }
         }

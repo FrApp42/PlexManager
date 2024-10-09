@@ -169,5 +169,27 @@ namespace PlexAPI.Services
                     return false;
             }
         }
+
+        public async Task<ServerUserList?> GetServerUserList(Server server)
+        {
+            if (_account == null)
+                throw new Exception("You must Authenticate first !");
+
+            ApiRequest request = new(URLs.ServerUserList(server));
+            request
+                .AddPlexClientIdentifier()
+                .AddPlexToken(_account.AuthToken);
+
+            Result<ServerUserList> result = await request.Run<ServerUserList>();
+
+            switch (result.StatusCode)
+            {
+                case (int)HttpStatusCode.OK:
+                    return result.Value;
+                case (int)HttpStatusCode.Unauthorized:
+                default:
+                    return null;
+            }
+        }
     }
 }

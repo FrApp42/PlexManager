@@ -6,19 +6,19 @@
              x:Class="PlexManager.View.SingleServerPage"
              x:DataType="viewmodel:SingleServerViewModel"
              Title="{Binding Server.Name}">
-    <VerticalStackLayout>
-        <Grid>
-            <Grid.RowDefinitions>
-                <RowDefinition Height="*" />
-            </Grid.RowDefinitions>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
 
-            <ScrollView Grid.Row="0">
-                <VerticalStackLayout>
-                    <components:IdentityBlock />
+        <ScrollView Grid.Row="0">
+            <VerticalStackLayout>
+                <components:IdentityBlock />
 
-                    <components:LibrariesBlock />
-                </VerticalStackLayout>
-            </ScrollView>
-        </Grid>
-    </VerticalStackLayout>
+                <components:LibrariesBlock />
+
+                <components:UserListBlock />
+            </VerticalStackLayout>
+        </ScrollView>
+    </Grid>
 </ContentPage>
