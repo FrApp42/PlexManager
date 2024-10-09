@@ -16,5 +16,10 @@
         {
             return $"{server.Scheme}://{server.Address}:{server.Port}";
         }
+
+        internal static string ServerLibraries(Server server)
+        {
+            return $"{server.Scheme}://{server.Address}:{server.Port}/library/sections";
+        }
     }
 }

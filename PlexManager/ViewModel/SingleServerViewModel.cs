@@ -19,6 +19,9 @@ namespace PlexManager.ViewModel
         [ObservableProperty]
         private ServerCapabilities _capabilities;
 
+        [ObservableProperty]
+        private ServerLibraries _libraries;
+
         IPlexAPI _plexAPI;
 
         public SingleServerViewModel(IPlexAPI plexAPI)
@@ -33,10 +36,11 @@ namespace PlexManager.ViewModel
 
         public async void Loaded(object? sender, NavigatedToEventArgs e)
         {
-            await LoadServerIdentity();
+            await LoadServerCapabilities();
+            await LoadServerLibraries();
         }
 
-        private async Task LoadServerIdentity()
+        private async Task LoadServerCapabilities()
         {
             string? oauthToken = await SecureStorage.Default.GetAsync("oauth_token");
 
@@ -49,6 +53,25 @@ namespace PlexManager.ViewModel
             try
             {
                 Capabilities = await _plexAPI.GetServerCapabilities(Server);
+            }
+            catch (Exception ex)
+            {
+            }
+        }
+
+        private async Task LoadServerLibraries()
+        {
+            string? oauthToken = await SecureStorage.Default.GetAsync("oauth_token");
+
+            if (string.IsNullOrEmpty(oauthToken))
+            {
+                await Shell.Current.GoToAsync(nameof(ClaimTokenPage));
+                return;
+            }
+
+            try
+            {
+                Libraries = await _plexAPI.GetServerLibraries(Server);
             }
             catch (Exception ex)
             {

@@ -2,7 +2,7 @@
 
 namespace PlexAPI.Models.Servers
 {
-    public class Directory
+    public class Capability
     {
         [XmlAttribute("count")]
         public int Count { get; set; }

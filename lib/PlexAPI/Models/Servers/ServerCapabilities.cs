@@ -150,7 +150,7 @@ namespace PlexAPI.Models.Servers
         public int VoiceSearch { get; set; }
 
         [XmlElement("Directory")]
-        public List<Directory> Directories { get; set; }
+        public List<Capability> Capabilities { get; set; }
 
         [XmlIgnore]
         public bool HasPlexPass { get
