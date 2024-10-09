@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:viewmodel="clr-namespace:PlexManager.ViewModel"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="PlexManager.View.Components.IdentityBlock"
+             x:DataType="viewmodel:SingleServerViewModel">
+    <Border Padding="15"
+            Margin="10,5,10,5"
+            StrokeShape="RoundRectangle 5">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+
+            <Label Text="Identity"
+                   Grid.Row="0"
+                   FontSize="Medium"
+                   HorizontalOptions="Center"
+                   Margin="0,0,0,10" />
+
+            <Grid Grid.Row="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1*" />
+                    <ColumnDefinition Width="2*" />
+                </Grid.ColumnDefinitions>
+
+                <Label Text="PMS Version: "
+                       HorizontalOptions="Start"
+                       Grid.Column="0" />
+
+                <Label Text="{Binding Capabilities.Version}"
+                       HorizontalOptions="End"
+                       Grid.Column="1" />
+            </Grid>
+
+            <Grid Grid.Row="2">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1*" />
+                    <ColumnDefinition Width="2*" />
+                </Grid.ColumnDefinitions>
+
+                <Label Text="Machine ID: "
+                       HorizontalOptions="Start"
+                       Grid.Column="0" />
+
+                <Label Text="{Binding Capabilities.MachineIdentifier}"
+                       LineBreakMode="TailTruncation"
+                       HorizontalOptions="End"
+                       Grid.Column="1">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding CopyMachineIdCommand}"
+                                              CommandParameter="{Binding Capabilities.MachineIdentifier}" />
+                    </Label.GestureRecognizers>
+                </Label>
+            </Grid>
+
+            <Grid Grid.Row="3">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1*" />
+                    <ColumnDefinition Width="2*" />
+                </Grid.ColumnDefinitions>
+
+                <Label Text="Plex Pass: "
+                       HorizontalOptions="Start"
+                       Grid.Column="0" />
+
+                <Label Text="{Binding Capabilities.HasPlexPass}"
+                       HorizontalOptions="End"
+                       Grid.Column="1" />
+            </Grid>
+        </Grid>
+    </Border>
+</ContentView>

@@ -1,17 +1,11 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-             xmlns:helpers="clr-namespace:PlexManager.Helpers"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:mi="http://www.aathifmahir.com/dotnet/2022/maui/icons"
-             xmlns:plexservermodels="clr-namespace:PlexAPI.Models.Servers;assembly=PlexAPI"
+             xmlns:components="clr-namespace:PlexManager.View.Components"
              xmlns:viewmodel="clr-namespace:PlexManager.ViewModel"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="PlexManager.View.SingleServerPage"
              x:DataType="viewmodel:SingleServerViewModel"
              Title="{Binding Server.Name}">
-    <ContentPage.Resources>
-        <helpers:IconTypeConverter x:Key="IconTypeConverter" />
-    </ContentPage.Resources>
-    
     <VerticalStackLayout>
         <Grid>
             <Grid.RowDefinitions>
@@ -20,126 +14,9 @@
 
             <ScrollView Grid.Row="0">
                 <VerticalStackLayout>
-                    <Border Padding="15"
-                            Margin="10,5,10,5"
-                            StrokeShape="RoundRectangle 5">
-                        <Grid>
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="Auto" />
-                                <RowDefinition Height="Auto" />
-                                <RowDefinition Height="Auto" />
-                                <RowDefinition Height="Auto" />
-                            </Grid.RowDefinitions>
+                    <components:IdentityBlock />
 
-                            <Label Text="Identity"
-                                   Grid.Row="0"
-                                   FontSize="Medium"
-                                   HorizontalOptions="Center"
-                                   Margin="0,0,0,10" />
-
-                            <Grid Grid.Row="1">
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="1*" />
-                                    <ColumnDefinition Width="2*" />
-                                </Grid.ColumnDefinitions>
-
-                                <Label Text="PMS Version: "
-                                       HorizontalOptions="Start"
-                                       Grid.Column="0" />
-
-                                <Label Text="{Binding Capabilities.Version}"
-                                       HorizontalOptions="End"
-                                       Grid.Column="1" />
-                            </Grid>
-
-                            <Grid Grid.Row="2">
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="1*" />
-                                    <ColumnDefinition Width="2*" />
-                                </Grid.ColumnDefinitions>
-
-                                <Label Text="Machine ID: "
-                                       HorizontalOptions="Start"
-                                       Grid.Column="0" />
-
-                                <Label Text="{Binding Capabilities.MachineIdentifier}"
-                                       LineBreakMode="TailTruncation"
-                                       HorizontalOptions="End"
-                                       Grid.Column="1">
-                                    <Label.GestureRecognizers>
-                                        <TapGestureRecognizer Command="{Binding CopyMachineIdCommand}"
-                                                              CommandParameter="{Binding Capabilities.MachineIdentifier}" />
-                                    </Label.GestureRecognizers>
-                                </Label>
-                            </Grid>
-
-                            <Grid Grid.Row="3">
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="1*" />
-                                    <ColumnDefinition Width="2*" />
-                                </Grid.ColumnDefinitions>
-
-                                <Label Text="Plex Pass: "
-                                       HorizontalOptions="Start"
-                                       Grid.Column="0" />
-
-                                <Label Text="{Binding Capabilities.HasPlexPass}"
-                                       HorizontalOptions="End"
-                                       Grid.Column="1" />
-                            </Grid>
-                        </Grid>
-                    </Border>
-
-                    <Border Padding="15"
-                            Margin="10,5,10,5"
-                            StrokeShape="RoundRectangle 5">
-                        <Grid>
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="Auto" />
-                                <RowDefinition Height="Auto" />
-                                <RowDefinition Height="Auto" />
-                            </Grid.RowDefinitions>
-
-                            <Label Text="Libraries"
-                                   Grid.Row="0"
-                                   FontSize="Medium"
-                                   HorizontalOptions="Center"
-                                   Margin="0,0,0,10" />
-
-                            <Button Grid.Row="1"
-                                    Text="Update all"
-                                    CornerRadius="4"
-                                    Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:SingleServerViewModel}}, Path=UpdateAllLibrariesCommand}"
-                                    CommandParameter="{Binding Server}" />
-
-                            <VerticalStackLayout Grid.Row="2" Margin="0,5,0,0">
-                                <CollectionView ItemsSource="{Binding Libraries.Libraries}">
-                                    <CollectionView.ItemTemplate>
-                                        <DataTemplate x:DataType="plexservermodels:Library">
-                                            <Grid Row="0" Margin="0,7,0,0">
-                                                <Grid.ColumnDefinitions>
-                                                    <ColumnDefinition Width="Auto" />
-                                                    <ColumnDefinition Width="*" />
-                                                    <ColumnDefinition Width="Auto" />
-                                                </Grid.ColumnDefinitions>
-
-                                                <mi:MauiIcon Grid.Column="0"
-                                                             Icon="{Binding Type, Converter={StaticResource IconTypeConverter}, Mode=OneWay}" />
-
-                                                <Label Grid.Column="1"
-                                                       Text="{Binding Title}"
-                                                       VerticalOptions="Center"
-                                                       Margin="5,0,0,0"/>
-
-                                                <mi:MauiIcon Grid.Column="2"
-                                                             Icon="{mi:Material ChevronRight}" />
-                                            </Grid>
-                                        </DataTemplate>
-                                    </CollectionView.ItemTemplate>
-                                </CollectionView>
-                            </VerticalStackLayout>
-                        </Grid>
-                    </Border>
+                    <components:LibrariesBlock />
                 </VerticalStackLayout>
             </ScrollView>
         </Grid>
