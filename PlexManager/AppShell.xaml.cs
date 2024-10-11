@@ -11,6 +11,7 @@ namespace PlexManager
             Routing.RegisterRoute(nameof(AboutPage), typeof(AboutPage));
             Routing.RegisterRoute(nameof(ClaimTokenPage), typeof(ClaimTokenPage));
             Routing.RegisterRoute(nameof(SingleServerPage), typeof(SingleServerPage));
+            Routing.RegisterRoute(nameof(SettingsPage), typeof(SettingsPage));
         }
     }
 }

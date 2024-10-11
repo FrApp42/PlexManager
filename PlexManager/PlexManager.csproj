@@ -133,6 +133,9 @@
 	  <MauiXaml Update="View\ServersPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
+	  <MauiXaml Update="View\SettingsPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="View\SingleServerPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>

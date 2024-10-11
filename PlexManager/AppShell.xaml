@@ -22,7 +22,7 @@
         <ShellContent
              Title="Settings"
              Icon="{mi:Material Settings}"
-             ContentTemplate="{DataTemplate view:ServersPage}"
+             ContentTemplate="{DataTemplate view:SettingsPage}"
              Route="Settings"
              Shell.NavBarIsVisible="False" />
 

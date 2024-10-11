@@ -5,7 +5,8 @@
              xmlns:mi="http://www.aathifmahir.com/dotnet/2022/maui/icons"
              xmlns:viewmodel="clr-namespace:PlexManager.ViewModel"
              x:DataType="viewmodel:ClaimTokenViewModel"
-             Title="ClaimToken">
+             Title="ClaimToken"
+             Shell.NavBarIsVisible="False">
     <VerticalStackLayout>
         <Grid RowDefinitions="Auto,Auto,*">
 
