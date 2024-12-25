@@ -4,6 +4,7 @@ using MauiIcons.Material;
 using PlexAPI;
 using PlexManager.View;
 using PlexManager.ViewModel;
+using FFImageLoading.Maui;
 //using Plex.ServerApi;
 //using Plex.ServerApi.Clients.Interfaces;
 //using Plex.ServerApi.Clients;
@@ -20,6 +21,7 @@ namespace PlexManager
             var builder = MauiApp.CreateBuilder();
             builder
                 .UseMauiApp<App>()
+                .UseFFImageLoading()
                 .UseMauiCommunityToolkit()
                 .ConfigureFonts(fonts =>
                 {
