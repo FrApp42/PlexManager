@@ -1,4 +1,53 @@
-﻿namespace PlexAPI.Statics
+﻿/* Unmerged change from project 'PlexAPI (net8.0-android)'
+Added:
+using PlexAPI.Models.Servers.Library;
+using PlexAPI.Models.Servers.Library.Library;
+*/
+
+/* Unmerged change from project 'PlexAPI (net8.0-ios)'
+Added:
+using PlexAPI.Models.Servers.Library;
+using PlexAPI.Models.Servers.Library.Library;
+using PlexAPI.Models.Servers.Library.Library.Library;
+*/
+
+/* Unmerged change from project 'PlexAPI (net8.0-windows10.0.19041.0)'
+Added:
+using PlexAPI.Models.Servers.Library;
+*/
+
+/* Unmerged change from project 'PlexAPI (net8.0-android)'
+Before:
+using PlexAPI.Models.Servers.Library;
+After:
+using PlexAPI.Models.Servers;
+using PlexAPI.Models.Servers.Library;
+using PlexAPI.Models.Servers.Library;
+using PlexAPI.Models.Servers.Library;
+*/
+
+/* Unmerged change from project 'PlexAPI (net8.0-windows10.0.19041.0)'
+Before:
+using PlexAPI.Models.Servers.Library;
+After:
+using PlexAPI.Models.Servers;
+using PlexAPI.Models.Servers.Library;
+using PlexAPI.Models.Servers.Library;
+*/
+using PlexAPI.Models.Servers;
+
+/* Unmerged change from project 'PlexAPI (net8.0-android)'
+Removed:
+using PlexAPI.Models.Servers.Library.Library.Library;
+using PlexAPI.Models.Servers.Library.Library.Library.Library;
+*/
+
+/* Unmerged change from project 'PlexAPI (net8.0-windows10.0.19041.0)'
+Removed:
+using PlexAPI.Models.Servers.Library.Library.Library.Library;
+*/
+
+namespace PlexAPI.Statics
 {
     internal class URLs
     {
@@ -30,6 +79,11 @@
         internal static string ServerUserList(Server server)
         {
             return $"{server.Scheme}://{server.Address}:{server.Port}/accounts";
+        }
+
+        internal static string LibraryDetails(Server server, Library library)
+        {
+            return $"{server.Scheme}://{server.Address}:{server.Port}/library/sections/{library.Key}/all";
         }
     }
 }

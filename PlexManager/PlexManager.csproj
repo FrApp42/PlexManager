@@ -127,6 +127,15 @@
 	  <MauiXaml Update="View\Components\LibrariesBlock.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
+	  <MauiXaml Update="View\Components\LibraryQuickActions.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="View\Components\MovieMedias.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="View\Components\TvShowMedias.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="View\Components\UserListBlock.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
@@ -134,6 +143,9 @@
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="View\SettingsPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="View\SingleLibraryPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="View\SingleServerPage.xaml">
@@ -150,6 +162,9 @@
 	  </Compile>
 	  <Compile Update="View\Components\UserListBlock.xaml.cs">
 	    <DependentUpon>UserListBlock.xaml</DependentUpon>
+	  </Compile>
+	  <Compile Update="View\SingleLibraryPage.xaml.cs">
+	    <DependentUpon>SingleLibraryPage.xaml</DependentUpon>
 	  </Compile>
 	  <Compile Update="View\SingleServerPage.xaml.cs">
 	    <DependentUpon>SingleServerPage.xaml</DependentUpon>

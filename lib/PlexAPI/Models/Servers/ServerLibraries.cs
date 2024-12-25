@@ -1,4 +1,62 @@
-﻿using System.Xml.Serialization;
+﻿
+/* Unmerged change from project 'PlexAPI (net8.0-android)'
+Before:
+using System.Xml.Serialization;
+After:
+using PlexAPI.Models.Servers.Library;
+using PlexAPI.Models.Servers.Library.Library;
+using System.Xml.Serialization;
+*/
+
+/* Unmerged change from project 'PlexAPI (net8.0-ios)'
+Before:
+using System.Xml.Serialization;
+After:
+using PlexAPI.Models.Servers.Library;
+using PlexAPI.Models.Servers.Library.Library;
+using PlexAPI.Models.Servers.Library.Library.Library;
+using System.Xml.Serialization;
+*/
+
+/* Unmerged change from project 'PlexAPI (net8.0-windows10.0.19041.0)'
+Before:
+using System.Xml.Serialization;
+After:
+using PlexAPI.Models.Servers.Library;
+using System.Xml.Serialization;
+*/
+
+/* Unmerged change from project 'PlexAPI (net8.0-android)'
+Before:
+using PlexAPI.Models.Servers.Library.Library;
+using PlexAPI.Models.Servers.Library.Library.Library;
+using PlexAPI.Models.Servers.Library.Library.Library.Library;
+using System.Xml.Serialization;
+After:
+using PlexAPI.Models.Servers;
+using PlexAPI.Models.Servers.Library;
+using PlexAPI.Models.Servers.Library;
+using PlexAPI.Models.Servers.Library.Library;
+using System.Xml.Serialization;
+*/
+
+/* Unmerged change from project 'PlexAPI (net8.0-windows10.0.19041.0)'
+Before:
+using PlexAPI.Models.Servers.Library.Library;
+After:
+using PlexAPI.Models.Servers;
+using PlexAPI.Models.Servers.Library;
+using PlexAPI.Models.Servers.Library.Library;
+*/
+
+/* Unmerged change from project 'PlexAPI (net8.0-windows10.0.19041.0)'
+Before:
+using PlexAPI.Models.Servers.Library.Library.Library.Library;
+using System.Xml.Serialization;
+After:
+using System.Xml.Serialization;
+*/
+using System.Xml.Serialization;
 
 namespace PlexAPI.Models.Servers
 {

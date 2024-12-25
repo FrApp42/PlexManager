@@ -9,7 +9,6 @@ namespace PlexAPI.Services
 {
     public class PlexAPIService : IPlexAPI
     {
-
         private Account _account;
         private List<Server> _servers;
 
@@ -22,7 +21,7 @@ namespace PlexAPI.Services
                 verificationCode = mfa
             };
 
-            ApiRequest request = new ApiRequest(URLs.SignIn);
+            ApiRequest request = new ApiRequest(URLs.SignIn, HttpMethod.Post);
             request
                 .AddPlexClientIdentifier()
                 .AcceptJson()
@@ -181,6 +180,50 @@ namespace PlexAPI.Services
                 .AddPlexToken(_account.AuthToken);
 
             Result<ServerUserList> result = await request.Run<ServerUserList>();
+
+            switch (result.StatusCode)
+            {
+                case (int)HttpStatusCode.OK:
+                    return result.Value;
+                case (int)HttpStatusCode.Unauthorized:
+                default:
+                    return null;
+            }
+        }
+
+        public async Task<LibraryMovie?> GetLibraryMovieDetails(Server server, Library library)
+        {
+            if (_account == null)
+                throw new Exception("You must Authenticate first !");
+
+            ApiRequest request = new(URLs.LibraryDetails(server, library));
+            request
+                .AddPlexClientIdentifier()
+                .AddPlexToken(_account.AuthToken);
+
+            Result<LibraryMovie> result = await request.Run<LibraryMovie>();
+
+            switch (result.StatusCode)
+            {
+                case (int)HttpStatusCode.OK:
+                    return result.Value;
+                case (int)HttpStatusCode.Unauthorized:
+                default:
+                    return null;
+            }
+        }
+
+        public async Task<LibraryShow?> GetLibraryShowDetails(Server server, Library library)
+        {
+            if (_account == null)
+                throw new Exception("You must Authenticate first !");
+
+            ApiRequest request = new(URLs.LibraryDetails(server, library));
+            request
+                .AddPlexClientIdentifier()
+                .AddPlexToken(_account.AuthToken);
+
+            Result<LibraryShow> result = await request.Run<LibraryShow>();
 
             switch (result.StatusCode)
             {

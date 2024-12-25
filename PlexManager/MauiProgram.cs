@@ -53,6 +53,8 @@ namespace PlexManager
                 .AddSingleton<SingleServerViewModel>()
                 .AddSingleton<SettingsPage>()
                 .AddSingleton<SettingsViewModel>()
+                .AddSingleton<SingleLibraryPage>()
+                .AddSingleton<SingleLibraryViewModel>()
                 //.AddSingleton(apiOptions)
                 //.AddTransient<IPlexServerClient, PlexServerClient>()
                 //.AddTransient<IPlexAccountClient, PlexAccountClient>()

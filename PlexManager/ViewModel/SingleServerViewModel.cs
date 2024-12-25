@@ -5,7 +5,9 @@ using CommunityToolkit.Mvvm.Input;
 using Newtonsoft.Json;
 using PlexAPI;
 using PlexAPI.Models.Servers;
+using PlexManager.Model.BindingParameters;
 using PlexManager.View;
+using System.Collections.ObjectModel;
 
 namespace PlexManager.ViewModel
 {
@@ -26,6 +28,9 @@ namespace PlexManager.ViewModel
 
         [ObservableProperty]
         private ServerLibraries _libraries;
+
+        [ObservableProperty]
+        private List<ServerLibraryParameter> _librariesWithServer = [];
 
         [ObservableProperty]
         private ServerUserList _userList;
@@ -94,7 +99,18 @@ namespace PlexManager.ViewModel
 
             try
             {
-                Libraries = await _plexAPI.GetServerLibraries(Server);
+                ServerLibraries libraries = await _plexAPI.GetServerLibraries(Server);
+
+                LibrariesWithServer.Clear();
+
+                foreach (Library library in libraries.Libraries)
+                {
+                    LibrariesWithServer.Add(new ServerLibraryParameter
+                    {
+                        Server = Server,
+                        Library = library
+                    });
+                }
             }
             catch
             {
@@ -152,6 +168,15 @@ namespace PlexManager.ViewModel
 
             IToast toast = Toast.Make(message, ToastDuration.Short, 14);
             await toast.Show(cancellationTokenSource.Token);
+        }
+
+        [RelayCommand]
+        private async Task NavigateToSingleLibrary(ServerLibraryParameter parameter)
+        {
+            string serverJson = JsonConvert.SerializeObject(parameter.Server);
+            string libraryJson = JsonConvert.SerializeObject(parameter.Library);
+
+            await Shell.Current.GoToAsync($"{nameof(SingleLibraryPage)}?server={Uri.EscapeDataString(serverJson)}&library={Uri.EscapeDataString(libraryJson)}");
         }
     }
 }

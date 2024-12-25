@@ -30,6 +30,7 @@ namespace PlexManager.ViewModel
             try
             {
                 bool isConnected = await _plexAPI.Auth(Username, Password, Mfa.ToString());
+
                 if (isConnected)
                 {
                     await SecureStorage.Default.SetAsync("oauth_token", _plexAPI?.GetToken());
