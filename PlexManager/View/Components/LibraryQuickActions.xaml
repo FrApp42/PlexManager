@@ -1,11 +1,13 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-             xmlns:viewmodel="clr-namespace:PlexManager.ViewModel"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="PlexManager.View.Components.LibraryQuickActions"
-             x:DataType="viewmodel:SingleLibraryViewModel">
-    <Border Padding="15"
+<ContentView
+    x:Class="PlexManager.View.Components.LibraryQuickActions"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:viewmodel="clr-namespace:PlexManager.ViewModel"
+    x:DataType="viewmodel:SingleLibraryViewModel">
+    <Border
         Margin="10,5,10,5"
+        Padding="15"
         StrokeShape="RoundRectangle 5">
         <Grid>
             <Grid.RowDefinitions>
@@ -15,11 +17,12 @@
                 <RowDefinition Height="Auto" />
             </Grid.RowDefinitions>
 
-            <Label Text="Quick actions"
-               Grid.Row="0"
-               FontSize="Medium"
-               HorizontalOptions="Center"
-               Margin="0,0,0,0" />
+            <Label
+                Grid.Row="0"
+                Margin="0,0,0,0"
+                FontSize="Medium"
+                HorizontalOptions="Center"
+                Text="Quick actions" />
 
             <Grid Grid.Row="1" Margin="0,10,0,5">
                 <Grid.ColumnDefinitions>
@@ -27,21 +30,24 @@
                     <ColumnDefinition Width="*" />
                 </Grid.ColumnDefinitions>
 
-                <Button Grid.Column="0"
-                    Text="Scan"
+                <Button
+                    Grid.Column="0"
+                    Margin="0,0,5,0"
                     CornerRadius="4"
-                    Margin="0,0,5,0"/>
+                    Text="Scan" />
 
-                <Button Grid.Column="1"
-                    Text="Update metadata"
+                <Button
+                    Grid.Column="1"
+                    Margin="5,0,0,0"
                     CornerRadius="4"
-                    Margin="5,0,0,0"/>
+                    Text="Update metadata" />
             </Grid>
 
-            <Button Grid.Row="2"
-                Text="Empty trash"
+            <Button
+                Grid.Row="2"
+                Margin="0,5,0,0"
                 CornerRadius="4"
-                Margin="0,5,0,0"/>
+                Text="Empty trash" />
         </Grid>
     </Border>
 </ContentView>

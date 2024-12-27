@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-             xmlns:viewmodel="clr-namespace:PlexManager.ViewModel"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="PlexManager.View.SettingsPage"
-             x:DataType="viewmodel:SettingsViewModel"
-             Title="SettingsPage">
+<ContentPage
+    x:Class="PlexManager.View.SettingsPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:viewmodel="clr-namespace:PlexManager.ViewModel"
+    Title="SettingsPage"
+    x:DataType="viewmodel:SettingsViewModel">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="*" />
@@ -12,16 +13,16 @@
 
         <ScrollView Grid.Row="0">
             <VerticalStackLayout>
-                <Border Padding="15"
-                        Margin="10"
-                        StrokeShape="RoundRectangle 5">
+                <Border
+                    Margin="10"
+                    Padding="15"
+                    StrokeShape="RoundRectangle 5">
                     <Grid>
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition />
                         </Grid.ColumnDefinitions>
 
-                        <Button Text="Logout"
-                                Command="{Binding LogoutCommand}"/>
+                        <Button Command="{Binding LogoutCommand}" Text="Logout" />
                     </Grid>
                 </Border>
             </VerticalStackLayout>

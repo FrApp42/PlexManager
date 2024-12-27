@@ -1,26 +1,30 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="PlexManager.View.AboutPage"
-             xmlns:model="clr-namespace:PlexManager.Model"
-             xmlns:viewmodel="clr-namespace:PlexManager.ViewModel"
-             xmlns:mi="http://www.aathifmahir.com/dotnet/2022/maui/icons"
-             x:DataType="viewmodel:AboutViewModel"
-             Title="About">
-    
+<ContentPage
+    x:Class="PlexManager.View.AboutPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:mi="http://www.aathifmahir.com/dotnet/2022/maui/icons"
+    xmlns:model="clr-namespace:PlexManager.Model"
+    xmlns:viewmodel="clr-namespace:PlexManager.ViewModel"
+    Title="About"
+    x:DataType="viewmodel:AboutViewModel">
+
     <VerticalStackLayout>
         <CollectionView ItemsSource="{Binding Groups}">
             <CollectionView.ItemTemplate>
                 <DataTemplate x:DataType="model:AboutGroup">
 
-                    <Border Padding="10" Margin="10" StrokeShape="RoundRectangle 10">
+                    <Border
+                        Margin="10"
+                        Padding="10"
+                        StrokeShape="RoundRectangle 10">
                         <VerticalStackLayout>
                             <HorizontalStackLayout Margin="0,0,0,10">
                                 <Label
-                                    Text="{Binding Name}"
                                     FontSize="22"
+                                    HorizontalTextAlignment="Start"
                                     SemanticProperties.HeadingLevel="Level3"
-                                    HorizontalTextAlignment="Start" />
+                                    Text="{Binding Name}" />
                             </HorizontalStackLayout>
 
                             <CollectionView ItemsSource="{Binding Items}">
@@ -33,36 +37,45 @@
                                                 <ColumnDefinition Width="20" />
                                             </Grid.ColumnDefinitions>
                                             <Grid.GestureRecognizers>
-                                                <TapGestureRecognizer
-                                                    Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:AboutViewModel}}, Path=OpenURLCommand}"
-                                                    CommandParameter="{Binding Url}"
-                                                    />
+                                                <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:AboutViewModel}}, Path=OpenURLCommand}" CommandParameter="{Binding Url}" />
                                             </Grid.GestureRecognizers>
                                             <Border
                                                 Grid.Column="0"
-                                                StrokeShape="RoundRectangle 30"
-                                                Stroke="Black"
-                                                StrokeThickness="0"
+                                                Margin="0,8,0,0"
                                                 HeightRequest="50"
-                                                WidthRequest="50"
-                                                Margin="0,8,0,0">
+                                                Stroke="Black"
+                                                StrokeShape="RoundRectangle 30"
+                                                StrokeThickness="0"
+                                                WidthRequest="50">
 
-                                                <Image 
+                                                <Image
                                                     Aspect="AspectFill"
                                                     HeightRequest="50"
-                                                    WidthRequest="50"
                                                     HorizontalOptions="Center"
+                                                    Source="{Binding Icon}"
                                                     VerticalOptions="Center"
-                                                    Source="{Binding Icon}" 
-                                                    />
+                                                    WidthRequest="50" />
                                             </Border>
 
-                                            <VerticalStackLayout VerticalOptions="Center" Margin="15,0,0,0" Grid.Column="1">
-                                                <Label Text="{Binding Name}" FontSize="18" TextColor="Gray"/>
-                                                <Label Text="{Binding Description}" FontSize="14" TextColor="Gray"/>
+                                            <VerticalStackLayout
+                                                Grid.Column="1"
+                                                Margin="15,0,0,0"
+                                                VerticalOptions="Center">
+                                                <Label
+                                                    FontSize="18"
+                                                    Text="{Binding Name}"
+                                                    TextColor="Gray" />
+                                                <Label
+                                                    FontSize="14"
+                                                    Text="{Binding Description}"
+                                                    TextColor="Gray" />
                                             </VerticalStackLayout>
 
-                                            <Image Grid.Column="2" Aspect="Center" Source="{mi:Material ArrowForwardIos}" HorizontalOptions="End" />
+                                            <Image
+                                                Grid.Column="2"
+                                                Aspect="Center"
+                                                HorizontalOptions="End"
+                                                Source="{mi:Material ArrowForwardIos}" />
                                         </Grid>
                                     </DataTemplate>
                                 </CollectionView.ItemTemplate>
@@ -70,7 +83,7 @@
 
                         </VerticalStackLayout>
                     </Border>
-                    
+
                 </DataTemplate>
             </CollectionView.ItemTemplate>
         </CollectionView>

@@ -1,20 +1,21 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-             xmlns:components="clr-namespace:PlexManager.View.Components"
-             xmlns:helpers="clr-namespace:PlexManager.Helpers"
-             xmlns:mi="http://www.aathifmahir.com/dotnet/2022/maui/icons"
-             xmlns:plexservermodels="clr-namespace:PlexAPI.Models.Servers;assembly=PlexAPI"
-             xmlns:viewmodel="clr-namespace:PlexManager.ViewModel"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="PlexManager.View.SingleLibraryPage"
-             x:DataType="viewmodel:SingleLibraryViewModel">
+<ContentPage
+    x:Class="PlexManager.View.SingleLibraryPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:components="clr-namespace:PlexManager.View.Components"
+    xmlns:helpers="clr-namespace:PlexManager.Helpers"
+    xmlns:mi="http://www.aathifmahir.com/dotnet/2022/maui/icons"
+    xmlns:plexservermodels="clr-namespace:PlexAPI.Models.Servers;assembly=PlexAPI"
+    xmlns:viewmodel="clr-namespace:PlexManager.ViewModel"
+    x:DataType="viewmodel:SingleLibraryViewModel">
     <ContentPage.Resources>
         <helpers:IconTypeConverter x:Key="IconTypeConverter" />
         <helpers:EqualityConverter x:Key="EqualityConverter" />
         <helpers:NullToBooleanConverter x:Key="NullToBooleanConverter" />
     </ContentPage.Resources>
 
-    <Grid>
+    <Grid Margin="0,5,0,5">
         <Grid.RowDefinitions>
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
@@ -23,26 +24,26 @@
             <VerticalStackLayout>
                 <components:LibraryQuickActions />
 
-                <Border Padding="15"
-                        Margin="10,5,10,5"
-                        StrokeShape="RoundRectangle 5">
+                <Border
+                    Margin="10,5,10,5"
+                    Padding="15"
+                    StrokeShape="RoundRectangle 5">
                     <Grid>
                         <Grid.RowDefinitions>
                             <RowDefinition Height="Auto" />
                             <RowDefinition Height="Auto" />
                         </Grid.RowDefinitions>
 
-                        <Label Text="Medias"
-                               Grid.Row="0"
-                               FontSize="Medium"
-                               HorizontalOptions="Center"
-                               Margin="0,0,0,0" />
+                        <Label
+                            Grid.Row="0"
+                            Margin="0,0,0,0"
+                            FontSize="Medium"
+                            HorizontalOptions="Center"
+                            Text="Medias" />
 
-                        <components:MovieMedias Grid.Row="1"
-                                                IsVisible="{Binding LibraryMovie, Converter={StaticResource NullToBooleanConverter}}" />
+                        <components:MovieMedias Grid.Row="1" IsVisible="{Binding LibraryMovie, Converter={StaticResource NullToBooleanConverter}}" />
 
-                        <components:TvShowMedias Grid.Row="1"
-                                                 IsVisible="{Binding LibraryTvShow, Converter={StaticResource NullToBooleanConverter}}" />
+                        <components:TvShowMedias Grid.Row="1" IsVisible="{Binding LibraryTvShow, Converter={StaticResource NullToBooleanConverter}}" />
                     </Grid>
                 </Border>
             </VerticalStackLayout>
