@@ -7,54 +7,54 @@ namespace PlexManager.ViewModels
     public partial class AboutViewModel : ObservableObject
     {
         [ObservableProperty]
-        public List<AboutGroup> _groups = new List<AboutGroup>()
+        public List<AboutGroup> _groups =
+        [
+            new AboutGroup()
             {
-                new AboutGroup()
-                {
-                    Name = "About",
-                    Items = new List<AboutItem>()
+                Name = "About",
+                Items =
+                [
+                    new AboutItem()
                     {
-                        new AboutItem()
-                        {
-                            Name = "Version",
-                            Description = AppInfo.VersionString,
-                            Icon = "plexmanager.png"
-                        },
-                        new AboutItem()
-                        {
-                            Name = "Source Code",
-                            Icon = "github.png"
-                        },
-                        new AboutItem()
-                        {
-                            Name = "GNU General Public License v3.0",
-                            Icon = "license.png",
-                            Url = "https://choosealicense.com/licenses/gpl-3.0/"
-                        }
-                    }
-                },
-                new AboutGroup()
-                {
-                    Name = "Authors",
-                    Items = new List<AboutItem>()
+                        Name = "Version",
+                        Description = AppInfo.VersionString,
+                        Icon = "plexmanager.png"
+                    },
+                    new AboutItem()
                     {
-                        new AboutItem()
-                        {
-                            Name = "Sikelio",
-                            Description = "Original application author",
-                            Icon = "https://github.com/sikelio.png?size=50",
-                            Url = "https://github.com/sikelio"
-                        },
-                        new AboutItem()
-                        {
-                            Name = "AnthoDingo",
-                            Description = "Co-Author",
-                            Icon = "https://github.com/AnthoDingo.png?size=50",
-                            Url = "https://github.com/AnthoDingo"
-                        }
+                        Name = "Source Code",
+                        Icon = "github.png"
+                    },
+                    new AboutItem()
+                    {
+                        Name = "GNU General Public License v3.0",
+                        Icon = "license.png",
+                        Url = "https://choosealicense.com/licenses/gpl-3.0/"
                     }
-                }
-            };
+                ]
+            },
+            new AboutGroup()
+            {
+                Name = "Authors",
+                Items =
+                [
+                    new AboutItem()
+                    {
+                        Name = "Sikelio",
+                        Description = "Original application author",
+                        Icon = "https://github.com/sikelio.png?size=50",
+                        Url = "https://github.com/sikelio"
+                    },
+                    new AboutItem()
+                    {
+                        Name = "AnthoDingo",
+                        Description = "Co-Author",
+                        Icon = "https://github.com/AnthoDingo.png?size=50",
+                        Url = "https://github.com/AnthoDingo"
+                    }
+                ]
+            }
+        ];
 
         [RelayCommand]
         async Task OpenURL(string url)
@@ -74,4 +74,3 @@ namespace PlexManager.ViewModels
         }
     }
 }
- 
