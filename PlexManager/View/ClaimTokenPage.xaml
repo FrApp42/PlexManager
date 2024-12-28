@@ -1,74 +1,70 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<ContentPage
-    x:Class="PlexManager.View.ClaimTokenPage"
-    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:mi="http://www.aathifmahir.com/dotnet/2022/maui/icons"
-    xmlns:viewmodel="clr-namespace:PlexManager.ViewModel"
-    Title="ClaimToken"
-    x:DataType="viewmodel:ClaimTokenViewModel"
-    Shell.NavBarIsVisible="False">
+<ContentPage x:Class="PlexManager.View.ClaimTokenPage"
+             xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:mi="http://www.aathifmahir.com/dotnet/2022/maui/icons"
+             xmlns:viewmodel="clr-namespace:PlexManager.ViewModel"
+             Title="ClaimToken"
+             x:DataType="viewmodel:ClaimTokenViewModel"
+             Shell.NavBarIsVisible="False">
     <VerticalStackLayout>
         <Grid RowDefinitions="Auto,Auto,*">
+            <BoxView Grid.RowSpan="2"
+                     BackgroundColor="{StaticResource Primary}"
+                     HorizontalOptions="Fill"
+                     VerticalOptions="Fill" />
 
-            <BoxView
-                Grid.RowSpan="2"
-                BackgroundColor="{StaticResource Primary}"
-                HorizontalOptions="Fill"
-                VerticalOptions="Fill" />
-
-            <Border
-                Margin="0,8,0,0"
-                HeightRequest="80"
-                HorizontalOptions="Center"
-                Stroke="White"
-                StrokeShape="RoundRectangle 80"
-                StrokeThickness="6"
-                VerticalOptions="Center"
-                WidthRequest="80">
-
-                <Image
-                    Aspect="AspectFill"
-                    HeightRequest="60"
+            <Border Margin="0,8,0,0"
+                    HeightRequest="80"
                     HorizontalOptions="Center"
-                    Source="{mi:Material Key}"
+                    Stroke="White"
+                    StrokeShape="RoundRectangle 80"
+                    StrokeThickness="6"
                     VerticalOptions="Center"
-                    WidthRequest="60" />
+                    WidthRequest="80">
+
+                <Image Aspect="AspectFill"
+                       HeightRequest="60"
+                       HorizontalOptions="Center"
+                       Source="{mi:Material Key}"
+                       VerticalOptions="Center"
+                       WidthRequest="60" />
             </Border>
 
-            <Label
-                Grid.Row="1"
-                Margin="0,0,0,8"
-                FontAttributes="Bold"
-                HorizontalOptions="Center"
-                Style="{StaticResource LargeLabel}"
-                Text="First Start"
-                TextColor="White" />
+            <Label Grid.Row="1"
+                   Margin="0,0,0,8"
+                   FontAttributes="Bold"
+                   HorizontalOptions="Center"
+                   Style="{StaticResource LargeLabel}"
+                   Text="First Start"
+                   TextColor="White" />
 
-            <VerticalStackLayout
-                Grid.Row="2"
-                Padding="10"
-                Spacing="10">
+            <VerticalStackLayout Grid.Row="2"
+                                 Padding="10"
+                                 Spacing="10">
 
-                <Label
-                    Margin="0,10,0,0"
-                    FontSize="18"
-                    Text="Username" />
+                <Label Margin="0,10,0,0"
+                       FontSize="18"
+                       Text="Username" />
+
                 <Entry Text="{Binding Username}" />
 
-                <Label FontSize="18" Text="Password" />
-                <Entry
-                    IsPassword="True"
-                    Placeholder="********"
-                    Text="{Binding Password}" />
+                <Label FontSize="18"
+                       Text="Password" />
 
-                <Label
-                    Margin="0,10,0,0"
-                    FontSize="18"
-                    Text="2FA" />
-                <Entry Keyboard="Numeric" Text="{Binding Mfa}" />
+                <Entry IsPassword="True"
+                       Placeholder="********"
+                       Text="{Binding Password}" />
 
-                <Button Command="{Binding RunAuthCommand}" Text="Save" />
+                <Label Margin="0,10,0,0"
+                       FontSize="18"
+                       Text="2FA" />
+
+                <Entry Keyboard="Numeric"
+                       Text="{Binding Mfa}" />
+
+                <Button Command="{Binding RunAuthCommand}"
+                        Text="Save" />
             </VerticalStackLayout>
         </Grid>
     </VerticalStackLayout>

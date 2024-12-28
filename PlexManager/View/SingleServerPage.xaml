@@ -1,13 +1,12 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<ContentPage
-    x:Class="PlexManager.View.SingleServerPage"
-    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:components="clr-namespace:PlexManager.View.Components"
-    xmlns:helpers="clr-namespace:PlexManager.Helpers"
-    xmlns:viewmodel="clr-namespace:PlexManager.ViewModel"
-    Title="{Binding Server.Name}"
-    x:DataType="viewmodel:SingleServerViewModel">
+<ContentPage x:Class="PlexManager.View.SingleServerPage"
+             xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:components="clr-namespace:PlexManager.View.Components"
+             xmlns:helpers="clr-namespace:PlexManager.Helpers"
+             xmlns:viewmodel="clr-namespace:PlexManager.ViewModel"
+             Title="{Binding Server.Name}"
+             x:DataType="viewmodel:SingleServerViewModel">
     <ContentPage.Resources>
         <helpers:InverseBooleanConverter x:Key="InverseBooleanConverter" />
     </ContentPage.Resources>
@@ -17,16 +16,14 @@
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
 
-        <ActivityIndicator
-            HorizontalOptions="Center"
-            IsRunning="{Binding IsLoading}"
-            IsVisible="{Binding IsLoading}"
-            VerticalOptions="Center" />
+        <ActivityIndicator HorizontalOptions="Center"
+                           IsRunning="{Binding IsLoading}"
+                           IsVisible="{Binding IsLoading}"
+                           VerticalOptions="Center" />
 
-        <ScrollView
-            Grid.Row="0"
-            Margin="0,5,0,5"
-            IsVisible="{Binding IsLoading, Converter={StaticResource InverseBooleanConverter}}">
+        <ScrollView Grid.Row="0"
+                    Margin="0,5,0,5"
+                    IsVisible="{Binding IsLoading, Converter={StaticResource InverseBooleanConverter}}">
             <VerticalStackLayout>
                 <components:IdentityBlock />
 
