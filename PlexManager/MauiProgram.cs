@@ -2,8 +2,8 @@
 using CommunityToolkit.Maui;
 using MauiIcons.Material;
 using PlexAPI;
-using PlexManager.View;
-using PlexManager.ViewModel;
+using PlexManager.Views;
+using PlexManager.ViewModels;
 using FFImageLoading.Maui;
 //using Plex.ServerApi;
 //using Plex.ServerApi.Clients.Interfaces;

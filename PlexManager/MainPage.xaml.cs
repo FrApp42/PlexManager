@@ -1,6 +1,5 @@
 ﻿using PlexAPI;
-using PlexManager.Static;
-using PlexManager.View;
+using PlexManager.Views;
 
 namespace PlexManager
 {

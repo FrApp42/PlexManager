@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView x:Class="PlexManager.Views.Components.LibraryQuickActions"
+             xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:vm="clr-namespace:PlexManager.ViewModels"
+             x:DataType="vm:SingleLibraryViewModel">
+    <Border Margin="10,5,10,5"
+            Padding="15"
+            StrokeShape="RoundRectangle 5">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+
+            <Label Grid.Row="0"
+                   Margin="0,0,0,0"
+                   FontSize="Medium"
+                   HorizontalOptions="Center"
+                   Text="Quick actions" />
+
+            <Grid Grid.Row="1"
+                  Margin="0,10,0,5">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+
+                <Button Grid.Column="0"
+                        Margin="0,0,5,0"
+                        CornerRadius="4"
+                        Text="Scan" />
+
+                <Button Grid.Column="1"
+                        Margin="5,0,0,0"
+                        CornerRadius="4"
+                        Text="Update metadata" />
+            </Grid>
+
+            <Button Grid.Row="2"
+                    Margin="0,5,0,0"
+                    CornerRadius="4"
+                    Text="Empty trash" />
+        </Grid>
+    </Border>
+</ContentView>

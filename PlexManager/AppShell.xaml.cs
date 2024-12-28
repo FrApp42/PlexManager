@@ -1,4 +1,4 @@
-﻿using PlexManager.View;
+﻿using PlexManager.Views;
 
 namespace PlexManager
 {

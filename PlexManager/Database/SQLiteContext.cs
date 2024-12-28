@@ -1,11 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Infrastructure;
-using PlexManager.Model;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using PlexManager.Models;
 
 namespace PlexManager.Database
 {
@@ -15,12 +9,13 @@ namespace PlexManager.Database
 
         public SQLiteContext()
         {
-            this.Database.EnsureCreated();
+            Database.EnsureCreated();
         }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             string dbPath = Path.Combine(FileSystem.AppDataDirectory, $"{AppInfo.Name}.db3");
+
             optionsBuilder
                 .UseSqlite($"Filename={dbPath}");
         }

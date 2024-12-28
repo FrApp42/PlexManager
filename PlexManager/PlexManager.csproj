@@ -116,58 +116,58 @@
 	  <MauiXaml Update="MainPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="View\AboutPage.xaml">
+	  <MauiXaml Update="Views\AboutPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="View\ClaimTokenPage.xaml">
+	  <MauiXaml Update="Views\ClaimTokenPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="View\Components\IdentityBlock.xaml">
+	  <MauiXaml Update="Views\Components\IdentityBlock.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="View\Components\LibrariesBlock.xaml">
+	  <MauiXaml Update="Views\Components\LibrariesBlock.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="View\Components\LibraryQuickActions.xaml">
+	  <MauiXaml Update="Views\Components\LibraryQuickActions.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="View\Components\MovieMedias.xaml">
+	  <MauiXaml Update="Views\Components\MovieMedias.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="View\Components\TvShowMedias.xaml">
+	  <MauiXaml Update="Views\Components\TvShowMedias.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="View\Components\UserListBlock.xaml">
+	  <MauiXaml Update="Views\Components\UserListBlock.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="View\ServersPage.xaml">
+	  <MauiXaml Update="Views\ServersPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="View\SettingsPage.xaml">
+	  <MauiXaml Update="Views\SettingsPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="View\SingleLibraryPage.xaml">
+	  <MauiXaml Update="Views\SingleLibraryPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="View\SingleServerPage.xaml">
+	  <MauiXaml Update="Views\SingleServerPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	</ItemGroup>
 
 	<ItemGroup>
-	  <Compile Update="View\AboutPage.xaml.cs">
+	  <Compile Update="Views\AboutPage.xaml.cs">
 	    <DependentUpon>AboutPage.xaml</DependentUpon>
 	  </Compile>
-	  <Compile Update="View\ClaimTokenPage.xaml.cs">
+	  <Compile Update="Views\ClaimTokenPage.xaml.cs">
 	    <DependentUpon>ClaimTokenPage.xaml</DependentUpon>
 	  </Compile>
-	  <Compile Update="View\Components\UserListBlock.xaml.cs">
+	  <Compile Update="Views\Components\UserListBlock.xaml.cs">
 	    <DependentUpon>UserListBlock.xaml</DependentUpon>
 	  </Compile>
-	  <Compile Update="View\SingleLibraryPage.xaml.cs">
+	  <Compile Update="Views\SingleLibraryPage.xaml.cs">
 	    <DependentUpon>SingleLibraryPage.xaml</DependentUpon>
 	  </Compile>
-	  <Compile Update="View\SingleServerPage.xaml.cs">
+	  <Compile Update="Views\SingleServerPage.xaml.cs">
 	    <DependentUpon>SingleServerPage.xaml</DependentUpon>
 	  </Compile>
 	</ItemGroup>
