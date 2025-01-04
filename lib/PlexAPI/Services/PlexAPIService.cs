@@ -174,7 +174,7 @@ namespace PlexAPI.Services
             if (_account == null)
                 throw new Exception("You must Authenticate first !");
 
-            ApiRequest request = new(URLs.ServerUserList(server));
+            ApiRequest request = new(URLs.ServerUserList(server), HttpMethod.Get);
             request
                 .AddPlexClientIdentifier()
                 .AddPlexToken(_account.AuthToken);
@@ -196,7 +196,7 @@ namespace PlexAPI.Services
             if (_account == null)
                 throw new Exception("You must Authenticate first !");
 
-            ApiRequest request = new(URLs.LibraryDetails(server, library));
+            ApiRequest request = new(URLs.LibraryDetails(server, library), HttpMethod.Get);
             request
                 .AddPlexClientIdentifier()
                 .AddPlexToken(_account.AuthToken);
@@ -218,7 +218,7 @@ namespace PlexAPI.Services
             if (_account == null)
                 throw new Exception("You must Authenticate first !");
 
-            ApiRequest request = new(URLs.LibraryDetails(server, library));
+            ApiRequest request = new(URLs.LibraryDetails(server, library), HttpMethod.Get);
             request
                 .AddPlexClientIdentifier()
                 .AddPlexToken(_account.AuthToken);
@@ -233,6 +233,64 @@ namespace PlexAPI.Services
                 default:
                     return null;
             }
+        }
+
+        public async Task<bool> UpdateLibrary(Server server, Library library)
+        {
+            if (_account == null)
+                throw new Exception("You must Authenticate first !");
+
+            ApiRequest request = new(URLs.UpdateLibrary(server, library), HttpMethod.Get);
+            request
+                .AddPlexClientIdentifier()
+                .AddPlexToken(_account.AuthToken);
+
+            Result<object> result = await request.Run<object>();
+
+            return result.StatusCode switch
+            {
+                (int)HttpStatusCode.OK => true,
+                _ => false,
+            };
+        }
+
+        public async Task<bool> UpdateLibraryMetadata(Server server, Library library)
+        {
+            if (_account == null)
+                throw new Exception("You must Authenticate first !");
+
+            ApiRequest request = new(URLs.UpdateLibrary(server, library), HttpMethod.Get);
+            request
+                .AddPlexClientIdentifier()
+                .AddPlexToken(_account.AuthToken)
+                .AddHeader("force", "1");
+
+            Result<object> result = await request.Run<object>();
+
+            return result.StatusCode switch
+            {
+                (int)HttpStatusCode.OK => true,
+                _ => false,
+            };
+        }
+
+        public async Task<bool> EmptyLibraryTrash(Server server, Library library)
+        {
+            if (_account == null)
+                throw new Exception("You must Authenticate first !");
+
+            ApiRequest request = new(URLs.EmptyLibraryTrash(server, library), HttpMethod.Put);
+            request
+                .AddPlexClientIdentifier()
+                .AddPlexToken(_account.AuthToken);
+
+            Result<object> result = await request.Run<object>();
+
+            return result.StatusCode switch
+            {
+                (int)HttpStatusCode.OK => true,
+                _ => false,
+            };
         }
     }
 }

@@ -85,5 +85,15 @@ namespace PlexAPI.Statics
         {
             return $"{server.Scheme}://{server.Address}:{server.Port}/library/sections/{library.Key}/all";
         }
+
+        internal static string UpdateLibrary(Server server, Library library)
+        {
+            return $"{server.Scheme}://{server.Address}:{server.Port}/library/sections/{library.Key}/refresh";
+        }
+
+        internal static string EmptyLibraryTrash(Server server, Library library)
+        {
+            return $"{server.Scheme}://{server.Address}:{server.Port}/library/sections/{library.Key}/emptyTrash";
+        }
     }
 }
