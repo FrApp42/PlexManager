@@ -4,6 +4,7 @@ using PlexAPI;
 using System.Diagnostics;
 using CommunityToolkit.Mvvm.Input;
 using Newtonsoft.Json;
+using PlexAPI.Services.Interfaces;
 
 namespace PlexManager.ViewModels
 {

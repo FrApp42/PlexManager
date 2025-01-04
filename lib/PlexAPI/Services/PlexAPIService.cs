@@ -1,6 +1,7 @@
 ﻿using FrApp42.Web.API;
 using PlexAPI.Models.Account;
 using PlexAPI.Models.Servers;
+using PlexAPI.Services.Interfaces;
 using PlexAPI.Statics;
 using System.Net;
 using System.Net.NetworkInformation;

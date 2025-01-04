@@ -1,4 +1,4 @@
-﻿using PlexAPI;
+﻿using PlexAPI.Services.Interfaces;
 using PlexManager.Views;
 
 namespace PlexManager

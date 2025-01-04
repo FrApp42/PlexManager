@@ -1,4 +1,5 @@
 ﻿using PlexAPI.Services;
+using PlexAPI.Services.Interfaces;
 
 namespace PlexAPI
 {

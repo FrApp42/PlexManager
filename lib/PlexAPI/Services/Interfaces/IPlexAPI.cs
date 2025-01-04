@@ -1,6 +1,6 @@
 ﻿using PlexAPI.Models.Servers;
 
-namespace PlexAPI
+namespace PlexAPI.Services.Interfaces
 {
     public interface IPlexAPI
     {
