@@ -6,11 +6,9 @@ using Newtonsoft.Json;
 using PlexAPI;
 using PlexAPI.Models.Servers;
 using PlexAPI.Services.Interfaces;
-using PlexManager.Views;
 using System.Diagnostics;
-using static Android.Provider.MediaStore;
 
-namespace PlexManager.ViewModels
+namespace PlexManager.ViewModels.Servers
 {
     [QueryProperty(nameof(ServerJson), "server")]
     [QueryProperty(nameof(LibraryJson), "library")]
@@ -46,6 +44,106 @@ namespace PlexManager.ViewModels
         {
             _plexAPI = plexAPI;
         }
+
+        #region Quick Actions
+
+        [RelayCommand]
+        private async Task ScanLibrary()
+        {
+            string? oauthToken = await SecureStorage.Default.GetAsync("oauth_token");
+
+            if (string.IsNullOrEmpty(oauthToken))
+            {
+                await Shell.Current.GoToAsync(nameof(Views.Tokens.ClaimPage));
+                return;
+            }
+
+            try
+            {
+                bool success = await _plexAPI.UpdateLibrary(Server, Library);
+
+                if (success)
+                {
+                    CancellationTokenSource cancellationTokenSource = new();
+                    IToast toast = Toast.Make("Library scan started", ToastDuration.Short, 14);
+                    await toast.Show(cancellationTokenSource.Token);
+                }
+                else
+                {
+                    CancellationTokenSource cancellationTokenSource = new();
+                    IToast toast = Toast.Make("An error occured", ToastDuration.Short, 14);
+                    await toast.Show(cancellationTokenSource.Token);
+                }
+            }
+            catch
+            { }
+        }
+
+        [RelayCommand]
+        private async Task UpdateLibraryMetadata()
+        {
+            string? oauthToken = await SecureStorage.Default.GetAsync("oauth_token");
+
+            if (string.IsNullOrEmpty(oauthToken))
+            {
+                await Shell.Current.GoToAsync(nameof(Views.Tokens.ClaimPage));
+                return;
+            }
+
+            try
+            {
+                bool success = await _plexAPI.UpdateLibraryMetadata(Server, Library);
+
+                if (success)
+                {
+                    CancellationTokenSource cancellationTokenSource = new();
+                    IToast toast = Toast.Make("Updating of library metadata started", ToastDuration.Short, 14);
+                    await toast.Show(cancellationTokenSource.Token);
+                }
+                else
+                {
+                    CancellationTokenSource cancellationTokenSource = new();
+                    IToast toast = Toast.Make("An error occured", ToastDuration.Short, 14);
+                    await toast.Show(cancellationTokenSource.Token);
+                }
+            }
+            catch
+            { }
+        }
+
+        [RelayCommand]
+        private async Task EmptyLibraryTrash()
+        {
+            string? oauthToken = await SecureStorage.Default.GetAsync("oauth_token");
+
+            if (string.IsNullOrEmpty(oauthToken))
+            {
+                await Shell.Current.GoToAsync(nameof(Views.Tokens.ClaimPage));
+                return;
+            }
+
+            try
+            {
+                bool success = await _plexAPI.EmptyLibraryTrash(Server, Library);
+
+                if (success)
+                {
+                    CancellationTokenSource cancellationTokenSource = new();
+                    IToast toast = Toast.Make("Library trash clear started", ToastDuration.Short, 14);
+                    await toast.Show(cancellationTokenSource.Token);
+                }
+                else
+                {
+                    CancellationTokenSource cancellationTokenSource = new();
+                    IToast toast = Toast.Make("An error occured", ToastDuration.Short, 14);
+                    await toast.Show(cancellationTokenSource.Token);
+                }
+            }
+            catch
+            { }
+        }
+
+        #endregion
 
         partial void OnServerJsonChanged(string value)
         {
@@ -92,7 +190,7 @@ namespace PlexManager.ViewModels
 
             if (string.IsNullOrEmpty(oauthToken))
             {
-                await Shell.Current.GoToAsync(nameof(ClaimTokenPage));
+                await Shell.Current.GoToAsync(nameof(Views.Tokens.ClaimPage));
                 return;
             }
 
@@ -130,100 +228,6 @@ namespace PlexManager.ViewModels
             }
         }
 
-        [RelayCommand]
-        private async Task ScanLibrary()
-        {
-            string? oauthToken = await SecureStorage.Default.GetAsync("oauth_token");
-
-            if (string.IsNullOrEmpty(oauthToken))
-            {
-                await Shell.Current.GoToAsync(nameof(ClaimTokenPage));
-                return;
-            }
-
-            try
-            {
-                bool success = await _plexAPI.UpdateLibrary(Server, Library);
-
-                if (success)
-                {
-                    CancellationTokenSource cancellationTokenSource = new();
-                    IToast toast = Toast.Make("Library scan started", ToastDuration.Short, 14);
-                    await toast.Show(cancellationTokenSource.Token);
-                }
-                else
-                {
-                    CancellationTokenSource cancellationTokenSource = new();
-                    IToast toast = Toast.Make("An error occured", ToastDuration.Short, 14);
-                    await toast.Show(cancellationTokenSource.Token);
-                }
-            }
-            catch
-            { }
-        }
-
-        [RelayCommand]
-        private async Task UpdateLibraryMetadata()
-        {
-            string? oauthToken = await SecureStorage.Default.GetAsync("oauth_token");
-
-            if (string.IsNullOrEmpty(oauthToken))
-            {
-                await Shell.Current.GoToAsync(nameof(ClaimTokenPage));
-                return;
-            }
-
-            try
-            {
-                bool success = await _plexAPI.UpdateLibraryMetadata(Server, Library);
-
-                if (success)
-                {
-                    CancellationTokenSource cancellationTokenSource = new();
-                    IToast toast = Toast.Make("Updating of library metadata started", ToastDuration.Short, 14);
-                    await toast.Show(cancellationTokenSource.Token);
-                }
-                else
-                {
-                    CancellationTokenSource cancellationTokenSource = new();
-                    IToast toast = Toast.Make("An error occured", ToastDuration.Short, 14);
-                    await toast.Show(cancellationTokenSource.Token);
-                }
-            }
-            catch
-            { }
-        }
-
-        [RelayCommand]
-        private async Task EmptyLibraryTrash()
-        {
-            string? oauthToken = await SecureStorage.Default.GetAsync("oauth_token");
-
-            if (string.IsNullOrEmpty(oauthToken))
-            {
-                await Shell.Current.GoToAsync(nameof(ClaimTokenPage));
-                return;
-            }
-
-            try
-            {
-                bool success = await _plexAPI.EmptyLibraryTrash(Server, Library);
-
-                if (success)
-                {
-                    CancellationTokenSource cancellationTokenSource = new();
-                    IToast toast = Toast.Make("Library trash clear started", ToastDuration.Short, 14);
-                    await toast.Show(cancellationTokenSource.Token);
-                }
-                else
-                {
-                    CancellationTokenSource cancellationTokenSource = new();
-                    IToast toast = Toast.Make("An error occured", ToastDuration.Short, 14);
-                    await toast.Show(cancellationTokenSource.Token);
-                }
-            }
-            catch
-            { }
-        }
+        
     }
 }

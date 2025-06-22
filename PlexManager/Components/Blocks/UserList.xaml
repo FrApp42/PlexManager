@@ -4,8 +4,8 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:mi="http://www.aathifmahir.com/dotnet/2022/maui/icons"
              xmlns:plexservermodels="clr-namespace:PlexAPI.Models.Servers;assembly=PlexAPI"
-             xmlns:vm="clr-namespace:PlexManager.ViewModels"
-             x:DataType="vm:SingleServerViewModel">
+             xmlns:vm="clr-namespace:PlexManager.ViewModels.Servers"
+             x:DataType="vm:ServerViewModel">
     <Border Margin="10,5,10,5"
             Padding="15"
             StrokeShape="RoundRectangle 5">
@@ -21,8 +21,7 @@
                    HorizontalOptions="Center"
                    Text="Users" />
 
-            <VerticalStackLayout Grid.Row="1"
-                                 Margin="0,5,0,0">
+            <VerticalStackLayout Margin="0,5,0,0">
                 <CollectionView ItemsSource="{Binding UserList.Users}">
                     <CollectionView.ItemTemplate>
                         <DataTemplate x:DataType="plexservermodels:User">
@@ -34,16 +33,16 @@
                                 </Grid.ColumnDefinitions>
 
                                 <mi:MauiIcon Grid.Column="0"
-                                             Icon="{mi:Material Person}"
-                                             VerticalOptions="Center" />
+                 Icon="{mi:Material Person}"
+                 VerticalOptions="Center" />
 
                                 <Label Grid.Column="1"
-                                       Margin="5,0,0,0"
-                                       Text="{Binding Name}"
-                                       VerticalOptions="Center" />
+           Margin="5,0,0,0"
+           Text="{Binding Name}"
+           VerticalOptions="Center" />
 
                                 <ImageButton Grid.Column="2"
-                                             Source="{mi:Material ChevronRight}" />
+                 Source="{mi:Material ChevronRight}" />
                             </Grid>
                         </DataTemplate>
                     </CollectionView.ItemTemplate>

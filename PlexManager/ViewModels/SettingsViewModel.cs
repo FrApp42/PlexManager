@@ -24,7 +24,7 @@ namespace PlexManager.ViewModels
 
             if (string.IsNullOrEmpty(oauthToken))
             {
-                await Shell.Current.GoToAsync(nameof(ClaimTokenPage));
+                await Shell.Current.GoToAsync(nameof(Views.Tokens.ClaimPage));
                 return;
             }
 
@@ -40,7 +40,7 @@ namespace PlexManager.ViewModels
         private async Task Logout()
         {
             SecureStorage.Default.Remove("oauth_token");
-            await Shell.Current.GoToAsync(nameof(ClaimTokenPage));
+            await Shell.Current.GoToAsync(nameof(Views.Tokens.ClaimPage));
         }
     }
 }

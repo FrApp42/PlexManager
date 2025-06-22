@@ -46,42 +46,42 @@
 
 	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net8.0-maccatalyst|AnyCPU'">
 	  <ApplicationId>fr.frapp42.plexmanager</ApplicationId>
-	  <ApplicationDisplayVersion>0.1</ApplicationDisplayVersion>
+	  <ApplicationDisplayVersion>0.2</ApplicationDisplayVersion>
 	</PropertyGroup>
 
 	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net8.0-android34.0|AnyCPU'">
 	  <ApplicationId>fr.frapp42.plexmanager</ApplicationId>
-	  <ApplicationDisplayVersion>0.1</ApplicationDisplayVersion>
+	  <ApplicationDisplayVersion>0.2</ApplicationDisplayVersion>
 	</PropertyGroup>
 
 	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net8.0-windows10.0.19041.0|AnyCPU'">
 	  <ApplicationId>fr.frapp42.plexmanager</ApplicationId>
-	  <ApplicationDisplayVersion>0.1</ApplicationDisplayVersion>
+	  <ApplicationDisplayVersion>0.2</ApplicationDisplayVersion>
 	</PropertyGroup>
 
 	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net8.0-ios|AnyCPU'">
 	  <ApplicationId>fr.frapp42.plexmanager</ApplicationId>
-	  <ApplicationDisplayVersion>0.1</ApplicationDisplayVersion>
+	  <ApplicationDisplayVersion>0.2</ApplicationDisplayVersion>
 	</PropertyGroup>
 
 	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net8.0-maccatalyst|AnyCPU'">
 	  <ApplicationId>fr.frapp42.plexmanager</ApplicationId>
-	  <ApplicationDisplayVersion>0.1</ApplicationDisplayVersion>
+	  <ApplicationDisplayVersion>0.2</ApplicationDisplayVersion>
 	</PropertyGroup>
 
 	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net8.0-android34.0|AnyCPU'">
 	  <ApplicationId>fr.frapp42.plexmanager</ApplicationId>
-	  <ApplicationDisplayVersion>0.1</ApplicationDisplayVersion>
+	  <ApplicationDisplayVersion>0.2</ApplicationDisplayVersion>
 	</PropertyGroup>
 
 	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net8.0-windows10.0.19041.0|AnyCPU'">
 	  <ApplicationId>fr.frapp42.plexmanager</ApplicationId>
-	  <ApplicationDisplayVersion>0.1</ApplicationDisplayVersion>
+	  <ApplicationDisplayVersion>0.2</ApplicationDisplayVersion>
 	</PropertyGroup>
 
 	<ItemGroup>
 		<!-- App Icon -->
-		<MauiIcon Include="Resources\AppIcon\appicon.svg" ForegroundFile="Resources\AppIcon\appiconfg.svg" Color="#512BD4" />
+		<MauiIcon Include="Resources\AppIcon\appicon.svg" ForegroundFile="Resources\AppIcon\appiconfg.svg" Color="#512BD4" BaseSize="90,90" />
 
 		<!-- Splash Screen -->
 		<MauiSplashScreen Include="Resources\Splash\splash.svg" Color="#512BD4" BaseSize="128,128" />
@@ -113,13 +113,16 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <MauiXaml Update="Components\Labels\CustomLabel.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="MainPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Views\AboutPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="Views\ClaimTokenPage.xaml">
+	  <MauiXaml Update="Views\Tokens\ClaimPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Components\Blocks\Identity.xaml">
@@ -146,10 +149,10 @@
 	  <MauiXaml Update="Views\SettingsPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="Views\SingleLibraryPage.xaml">
+	  <MauiXaml Update="Views\Servers\SingleLibraryPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="Views\SingleServerPage.xaml">
+	  <MauiXaml Update="Views\Servers\ServerPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	</ItemGroup>
@@ -173,17 +176,17 @@
 	  <Compile Update="Views\AboutPage.xaml.cs">
 	    <DependentUpon>AboutPage.xaml</DependentUpon>
 	  </Compile>
-	  <Compile Update="Views\ClaimTokenPage.xaml.cs">
-	    <DependentUpon>ClaimTokenPage.xaml</DependentUpon>
+	  <Compile Update="Views\Tokens\ClaimPage.xaml.cs">
+	    <DependentUpon>ClaimPage.xaml</DependentUpon>
 	  </Compile>
 	  <Compile Update="Components\Blocks\UserList.xaml.cs">
 	    <DependentUpon>UserList.xaml</DependentUpon>
 	  </Compile>
-	  <Compile Update="Views\SingleLibraryPage.xaml.cs">
+	  <Compile Update="Views\Servers\SingleLibraryPage.xaml.cs">
 	    <DependentUpon>SingleLibraryPage.xaml</DependentUpon>
 	  </Compile>
-	  <Compile Update="Views\SingleServerPage.xaml.cs">
-	    <DependentUpon>SingleServerPage.xaml</DependentUpon>
+	  <Compile Update="Views\Servers\ServerPage.xaml.cs">
+	    <DependentUpon>ServerPage.xaml</DependentUpon>
 	  </Compile>
 	</ItemGroup>
 

@@ -1,4 +1,6 @@
 ﻿using PlexManager.Views;
+using PlexManager.Views.Servers;
+using PlexManager.Views.Tokens;
 
 namespace PlexManager
 {
@@ -7,12 +9,18 @@ namespace PlexManager
         public AppShell()
         {
             InitializeComponent();
-            Routing.RegisterRoute(nameof(ServersPage), typeof(ServersPage));
+
+            // Global routes for navigation
+            //Routing.RegisterRoute(nameof(ServersPage), typeof(ServersPage));
             Routing.RegisterRoute(nameof(AboutPage), typeof(AboutPage));
-            Routing.RegisterRoute(nameof(ClaimTokenPage), typeof(ClaimTokenPage));
-            Routing.RegisterRoute(nameof(SingleServerPage), typeof(SingleServerPage));
             Routing.RegisterRoute(nameof(SettingsPage), typeof(SettingsPage));
-            Routing.RegisterRoute(nameof(SingleLibraryPage), typeof(SingleLibraryPage));
+
+            // Token claim page
+            Routing.RegisterRoute(nameof(ClaimPage), typeof(ClaimPage));
+
+            // Server Pages
+            Routing.RegisterRoute(nameof(ServerPage), typeof(ServerPage));
+            Routing.RegisterRoute(nameof(SingleLibraryPage), typeof(SingleLibraryPage));            
         }
     }
 }

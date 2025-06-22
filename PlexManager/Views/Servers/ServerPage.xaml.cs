@@ -1,11 +1,11 @@
 using MauiIcons.Core;
-using PlexManager.ViewModels;
+using PlexManager.ViewModels.Servers;
 
-namespace PlexManager.Views
+namespace PlexManager.Views.Servers
 {
-    public partial class SingleServerPage : ContentPage
+    public partial class ServerPage : ContentPage
     {
-        public SingleServerPage(SingleServerViewModel viewModel)
+        public ServerPage(ServerViewModel viewModel)
         {
             InitializeComponent();
 

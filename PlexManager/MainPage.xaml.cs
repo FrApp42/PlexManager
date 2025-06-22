@@ -20,14 +20,14 @@ namespace PlexManager
             string oauthToken = await SecureStorage.Default.GetAsync("oauth_token");
             if (String.IsNullOrEmpty(oauthToken))
             {
-                await Shell.Current.GoToAsync(nameof(ClaimTokenPage));
+                await Shell.Current.GoToAsync(nameof(Views.Tokens.ClaimPage));
                 return;
             }
                 
 
             if (!await _plexAPI.Ping(oauthToken))
             {
-                await Shell.Current.GoToAsync(nameof(ClaimTokenPage));
+                await Shell.Current.GoToAsync(nameof(Views.Tokens.ClaimPage));
                 return;
             }
 

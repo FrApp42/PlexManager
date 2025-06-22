@@ -38,13 +38,13 @@ namespace PlexManager.ViewModels
 
             if (String.IsNullOrEmpty(oauthToken))
             {
-                await Shell.Current.GoToAsync(nameof(ClaimTokenPage));
+                await Shell.Current.GoToAsync(nameof(Views.Tokens.ClaimPage));
                 return;
             }
 
             if (!await _plexAPI.Ping(oauthToken))
             {
-                await Shell.Current.GoToAsync(nameof(ClaimTokenPage));
+                await Shell.Current.GoToAsync(nameof(Views.Tokens.ClaimPage));
                 return;
             }
 
@@ -65,13 +65,8 @@ namespace PlexManager.ViewModels
                 try
                 {
                     Servers = await _plexAPI.GetServers();
-#if DEBUG
-                    foreach (Server server in Servers)
-                    {
-                        Debug.WriteLine(server.Name);
-                    }
-#endif
-} catch (Exception ex)
+                }
+                catch (Exception ex)
                 {
                     Debug.WriteLine(ex.Message);
                 }
@@ -86,7 +81,7 @@ namespace PlexManager.ViewModels
         {
             string serverJson = JsonConvert.SerializeObject(server);
 
-            await Shell.Current.GoToAsync($"{nameof(SingleServerPage)}?server={Uri.EscapeDataString(serverJson)}");
+            await Shell.Current.GoToAsync($"{nameof(Views.Servers.ServerPage)}?server={Uri.EscapeDataString(serverJson)}");
         }
     }
 }

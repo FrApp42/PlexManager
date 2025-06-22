@@ -3,7 +3,11 @@ using CommunityToolkit.Maui;
 using MauiIcons.Material;
 using PlexAPI;
 using PlexManager.Views;
+using PlexManager.Views.Servers;
+using PlexManager.Views.Tokens;
 using PlexManager.ViewModels;
+using PlexManager.ViewModels.Servers;
+using PlexManager.ViewModels.Tokens;
 using FFImageLoading.Maui;
 //using Plex.ServerApi;
 //using Plex.ServerApi.Clients.Interfaces;
@@ -49,10 +53,10 @@ namespace PlexManager
                 .AddSingleton<ServersViewModel>()
                 .AddSingleton<AboutPage>()
                 .AddSingleton<AboutViewModel>()
-                .AddSingleton<ClaimTokenPage>()
-                .AddSingleton<ClaimTokenViewModel>()
-                .AddSingleton<SingleServerPage>()
-                .AddSingleton<SingleServerViewModel>()
+                .AddSingleton<ClaimPage>()
+                .AddSingleton<ClaimViewModel>()
+                .AddSingleton<ServerPage>()
+                .AddSingleton<ServerViewModel>()
                 .AddSingleton<SettingsPage>()
                 .AddSingleton<SettingsViewModel>()
                 .AddSingleton<SingleLibraryPage>()

@@ -2,7 +2,7 @@
 <ContentView x:Class="PlexManager.Components.QuickActions.Library"
              xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:vm="clr-namespace:PlexManager.ViewModels"
+             xmlns:vm="clr-namespace:PlexManager.ViewModels.Servers"
              x:DataType="vm:SingleLibraryViewModel">
     <Border Margin="10,5,10,5"
             Padding="15"

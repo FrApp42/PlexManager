@@ -3,13 +3,13 @@ using CommunityToolkit.Mvvm.Input;
 using PlexAPI.Services.Interfaces;
 using PlexManager.Views;
 
-namespace PlexManager.ViewModels
+namespace PlexManager.ViewModels.Tokens
 {
-    public partial class ClaimTokenViewModel : ObservableObject
+    public partial class ClaimViewModel : ObservableObject
     {
         IPlexAPI _plexAPI;
 
-        public ClaimTokenViewModel(IPlexAPI plexAPI)
+        public ClaimViewModel(IPlexAPI plexAPI)
         {
             _plexAPI = plexAPI;
         }
@@ -34,7 +34,7 @@ namespace PlexManager.ViewModels
                 if (isConnected)
                 {
                     await SecureStorage.Default.SetAsync("oauth_token", _plexAPI?.GetToken());
-                    await Shell.Current.GoToAsync(nameof(ServersPage));
+                    await Shell.Current.GoToAsync($"//{nameof(ServersPage)}");
                 }
             }
             catch (Exception ex)

@@ -6,8 +6,8 @@
              xmlns:helpers="clr-namespace:PlexManager.Helpers"
              xmlns:mi="http://www.aathifmahir.com/dotnet/2022/maui/icons"
              xmlns:plexservermodels="clr-namespace:PlexAPI.Models.Servers;assembly=PlexAPI"
-             xmlns:vm="clr-namespace:PlexManager.ViewModels"
-             x:DataType="vm:SingleServerViewModel">
+             xmlns:vm="clr-namespace:PlexManager.ViewModels.Servers"
+             x:DataType="vm:ServerViewModel">
     <ContentView.Resources>
         <helpers:IconTypeConverter x:Key="IconTypeConverter" />
     </ContentView.Resources>
@@ -29,7 +29,7 @@
                    Text="Libraries" />
 
             <Button Grid.Row="1"
-                    Command="{Binding Source={RelativeSource AncestorType={x:Type vm:SingleServerViewModel}}, Path=UpdateAllLibrariesCommand}"
+                    Command="{Binding Source={RelativeSource AncestorType={x:Type vm:ServerViewModel}}, Path=UpdateAllLibrariesCommand}"
                     CommandParameter="{Binding Server}"
                     CornerRadius="4"
                     Text="Update all" />
@@ -46,6 +46,12 @@
                                     <ColumnDefinition Width="*" />
                                     <ColumnDefinition Width="Auto" />
                                 </Grid.ColumnDefinitions>
+                                <Grid.GestureRecognizers>
+                                    <TapGestureRecognizer 
+                                        Command="{Binding Source={RelativeSource AncestorType={x:Type vm:ServerViewModel}}, Path=NavigateToSingleLibraryCommand}"
+                                        CommandParameter="{Binding}"   
+                                    />
+                                </Grid.GestureRecognizers>
 
                                 <mi:MauiIcon Grid.Column="0"
                                              Icon="{Binding Library.Type, Converter={StaticResource IconTypeConverter}, Mode=OneWay}"
@@ -57,7 +63,7 @@
                                        VerticalOptions="Center" />
 
                                 <ImageButton Grid.Column="2"
-                                             Command="{Binding Source={RelativeSource AncestorType={x:Type vm:SingleServerViewModel}}, Path=NavigateToSingleLibraryCommand}"
+                                             Command="{Binding Source={RelativeSource AncestorType={x:Type vm:ServerViewModel}}, Path=NavigateToSingleLibraryCommand}"
                                              CommandParameter="{Binding}"
                                              Source="{mi:Material ChevronRight}" />
                             </Grid>

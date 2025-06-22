@@ -1,7 +1,7 @@
 using MauiIcons.Core;
-using PlexManager.ViewModels;
+using PlexManager.ViewModels.Servers;
 
-namespace PlexManager.Views;
+namespace PlexManager.Views.Servers;
 
 public partial class SingleLibraryPage : ContentPage
 {

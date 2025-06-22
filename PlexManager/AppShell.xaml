@@ -15,7 +15,7 @@
         <ShellContent Title="Servers"
                       Icon="{mi:Material Icon=Dns}"
                       ContentTemplate="{DataTemplate views:ServersPage}"
-                      Route="MainPage"
+                      Route="ServersPage"
                       Shell.NavBarIsVisible="False" />
 
         <ShellContent Title="Settings"
