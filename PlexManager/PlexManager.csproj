@@ -98,6 +98,21 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <AndroidResource Remove="Components\Blocks\**" />
+	  <AndroidResource Remove="Components\Medias\**" />
+	  <Compile Remove="Components\Blocks\**" />
+	  <Compile Remove="Components\Medias\**" />
+	  <EmbeddedResource Remove="Components\Blocks\**" />
+	  <EmbeddedResource Remove="Components\Medias\**" />
+	  <MauiCss Remove="Components\Blocks\**" />
+	  <MauiCss Remove="Components\Medias\**" />
+	  <MauiXaml Remove="Components\Blocks\**" />
+	  <MauiXaml Remove="Components\Medias\**" />
+	  <None Remove="Components\Blocks\**" />
+	  <None Remove="Components\Medias\**" />
+	</ItemGroup>
+
+	<ItemGroup>
 		<PackageReference Include="AathifMahir.Maui.MauiIcons.Material" Version="2.1.2" />
 		<PackageReference Include="CommunityToolkit.Maui" Version="7.0.1" />
 		<PackageReference Include="CommunityToolkit.Mvvm" Version="8.2.2" />
@@ -113,6 +128,9 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <MauiXaml Update="Components\Buttons\CustomButton.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="Components\Labels\CustomLabel.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
@@ -125,22 +143,7 @@
 	  <MauiXaml Update="Views\Tokens\ClaimPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="Components\Blocks\Identity.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
-	  <MauiXaml Update="Components\Blocks\Libraries.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
 	  <MauiXaml Update="Components\QuickActions\Library.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
-	  <MauiXaml Update="Components\Medias\Movie.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
-	  <MauiXaml Update="Components\Medias\TvShow.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
-	  <MauiXaml Update="Components\Blocks\UserList.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Views\ServersPage.xaml">
@@ -149,7 +152,7 @@
 	  <MauiXaml Update="Views\SettingsPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="Views\Servers\SingleLibraryPage.xaml">
+	  <MauiXaml Update="Views\Servers\LibraryPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Views\Servers\ServerPage.xaml">
@@ -158,18 +161,6 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <Compile Update="Components\Blocks\Identity.xaml.cs">
-	    <DependentUpon>Identity.xaml</DependentUpon>
-	  </Compile>
-	  <Compile Update="Components\Blocks\Libraries.xaml.cs">
-	    <DependentUpon>Libraries.xaml</DependentUpon>
-	  </Compile>
-	  <Compile Update="Components\Medias\Movie.xaml.cs">
-	    <DependentUpon>Movie.xaml</DependentUpon>
-	  </Compile>
-	  <Compile Update="Components\Medias\TvShow.xaml.cs">
-	    <DependentUpon>TvShow.xaml</DependentUpon>
-	  </Compile>
 	  <Compile Update="Components\QuickActions\Library.xaml.cs">
 	    <DependentUpon>Library.xaml</DependentUpon>
 	  </Compile>
@@ -179,10 +170,7 @@
 	  <Compile Update="Views\Tokens\ClaimPage.xaml.cs">
 	    <DependentUpon>ClaimPage.xaml</DependentUpon>
 	  </Compile>
-	  <Compile Update="Components\Blocks\UserList.xaml.cs">
-	    <DependentUpon>UserList.xaml</DependentUpon>
-	  </Compile>
-	  <Compile Update="Views\Servers\SingleLibraryPage.xaml.cs">
+	  <Compile Update="Views\Servers\LibraryPage.xaml.cs">
 	    <DependentUpon>SingleLibraryPage.xaml</DependentUpon>
 	  </Compile>
 	  <Compile Update="Views\Servers\ServerPage.xaml.cs">

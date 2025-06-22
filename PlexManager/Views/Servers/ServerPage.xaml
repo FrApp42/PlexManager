@@ -4,6 +4,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:blocks="clr-namespace:PlexManager.Components.Blocks"
              xmlns:labels="clr-namespace:PlexManager.Components.Labels"
+             xmlns:butons="clr-namespace:PlexManager.Components.Buttons"
              xmlns:helpers="clr-namespace:PlexManager.Helpers"
              xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
              xmlns:models="clr-namespace:PlexAPI.Models.Servers;assembly=PlexAPI"
@@ -12,7 +13,7 @@
              Title="{Binding Server.Name}"
              x:DataType="vm:ServerViewModel">
     <ContentPage.Resources>
-        <helpers:InverseBooleanConverter x:Key="InverseBooleanConverter" />
+        <helpers:IconTypeConverter x:Key="IconTypeConverter" />
         <toolkit:InvertedBoolConverter x:Key="InvertedBoolConverter" />
     </ContentPage.Resources>
 
@@ -28,7 +29,7 @@
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="*" />
             </Grid.RowDefinitions>
-            
+
             <!--#region Identity -->
 
             <Border 
@@ -73,6 +74,80 @@
 
             <!--#region Librairies -->
 
+            <Border 
+                Grid.Row="1"
+                Margin="10,5,10,5"
+                Padding="15"
+                StrokeShape="RoundRectangle 5">
+
+                <Grid RowDefinitions="Auto,Auto,Auto">
+                    <Label
+                        Grid.Row="0"
+                        Margin="0,0,0,10"
+                        FontSize="Medium"
+                        HorizontalOptions="Center"
+                        Text="Libraries" />
+
+                    <Button Grid.Row="1"
+                        Command="{Binding Source={RelativeSource AncestorType={x:Type vm:ServerViewModel}}, Path=UpdateAllLibrariesCommand}"
+                        CommandParameter="{Binding Server}"
+                        CornerRadius="4"
+                        Text="Update all" />
+
+                    <VerticalStackLayout Grid.Row="2" Margin="0,5,0,0">
+                        <CollectionView ItemsSource="{Binding Libraries}">
+                            <CollectionView.ItemTemplate>
+                                <DataTemplate x:DataType="models:Library">
+                                    <!--<Grid Margin="0,7,0,0" ColumnDefinitions="Auto,*,Auto">
+
+                                        <Grid.GestureRecognizers>
+                                            <TapGestureRecognizer 
+                                            Command="{Binding Source={RelativeSource AncestorType={x:Type vm:ServerViewModel}}, Path=NavigateToSingleLibraryCommand}"
+                                            CommandParameter="{Binding}" />
+                                        </Grid.GestureRecognizers>
+
+                                        --><!--<Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="Auto" />
+                                            <ColumnDefinition Width="*" />
+                                            <ColumnDefinition Width="Auto" />
+                                        </Grid.ColumnDefinitions>--><!--                                       
+
+                                        <mi:MauiIcon 
+                                            Grid.Column="0"
+                                            Icon="{Binding Type, Converter={StaticResource IconTypeConverter}, Mode=OneWay}"
+                                            VerticalOptions="Center" />
+
+                                        <Label 
+                                            Grid.Column="1"
+                                            Margin="5,0,0,0"
+                                            Text="{Binding Title}"
+                                            VerticalOptions="Center" />
+
+                                        --><!--<ImageButton Grid.Column="2"
+                                             Command="{Binding Source={RelativeSource AncestorType={x:Type vm:ServerViewModel}}, Path=NavigateToSingleLibraryCommand}"
+                                             CommandParameter="{Binding}"
+                                             Source="{mi:Material ChevronRight}" />--><!--
+                                        <ImageButton 
+                                            Grid.Column="2"
+                                            Source="{mi:Material ChevronRight}" />
+
+                                        
+                                    </Grid>-->
+
+                                    <butons:CustomButton 
+                                        Icon="{Binding Type, Converter={StaticResource IconTypeConverter}, Mode=OneWay}" 
+                                        Text="{Binding Title}"
+                                        Command="{Binding Source={RelativeSource AncestorType={x:Type vm:ServerViewModel}}, Path=NavigateToSingleLibraryCommand}"
+                                        CommandParameter="{Binding}"                                        
+                                        />
+                                </DataTemplate>
+                            </CollectionView.ItemTemplate>
+                        </CollectionView>
+                    </VerticalStackLayout>
+                </Grid>
+                
+            </Border>
+
             <!--<blocks:Libraries/>-->
 
             <!--#endregion-->
@@ -86,56 +161,29 @@
                 StrokeShape="RoundRectangle 5">
                 <Grid RowDefinitions="Auto, *">
 
+                    <Label 
+                        Grid.Row="0"
+                        Margin="0,0,0,10"
+                        FontSize="Medium"
+                        HorizontalOptions="Center"
+                        Text="Users" />
+                    
                     <RefreshView Grid.Row="1" IsRefreshing="{Binding IsLoadingUsers}" Command="{Binding LoadUsersCommand}">
                         <CollectionView ItemsSource="{Binding Users}">
                             <CollectionView.ItemTemplate>
                                 <DataTemplate x:DataType="models:User">
-                                    <Grid Margin="0,7,0,0" Row="0">
-                                        <Grid.ColumnDefinitions>
-                                            <ColumnDefinition Width="Auto" />
-                                            <ColumnDefinition Width="*" />
-                                            <ColumnDefinition Width="Auto" />
-                                        </Grid.ColumnDefinitions>
-
-                                        <mi:MauiIcon Grid.Column="0" Icon="{mi:Material Person}" VerticalOptions="Center" />
-
-                                        <Label Grid.Column="1" Margin="5,0,0,0" Text="{Binding Name}" VerticalOptions="Center" />
-
-                                        <ImageButton Grid.Column="2" Source="{mi:Material ChevronRight}" />
-                                    </Grid>
+                                    
+                                    <butons:CustomButton Icon="{mi:Material Person}" Text="{Binding Name}" />
+                                    
                                 </DataTemplate>
                             </CollectionView.ItemTemplate>
                         </CollectionView>
                     </RefreshView>
                 </Grid>
-                
-                
+
+
             </Border>
             <!--#endregion-->
-
-            <!--<blocks:UserList />-->
         </Grid>
-       
     </Grid>
-    
-    <!--<Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="*" />
-        </Grid.RowDefinitions>
-
-        <ActivityIndicator HorizontalOptions="Center"
-                           IsRunning="{Binding IsLoading}"
-                           IsVisible="{Binding IsLoading}"
-                           VerticalOptions="Center" />
-
-        <ScrollView Grid.Row="0"
-                    Margin="0,5,0,5"
-                    IsVisible="{Binding IsLoading, Converter={StaticResource InverseBooleanConverter}}">
-            <VerticalStackLayout>
-                
-
-                
-            </VerticalStackLayout>
-        </ScrollView>
-    </Grid>-->
 </ContentPage>

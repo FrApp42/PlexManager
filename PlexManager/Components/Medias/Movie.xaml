@@ -6,7 +6,7 @@
              xmlns:mi="http://www.aathifmahir.com/dotnet/2022/maui/icons"
              xmlns:plexservermodels="clr-namespace:PlexAPI.Models.Servers;assembly=PlexAPI"
              xmlns:vm="clr-namespace:PlexManager.ViewModels.Servers"
-             x:DataType="vm:SingleLibraryViewModel">
+             x:DataType="vm:LibraryViewModel">
     <VerticalStackLayout>
         <CollectionView ItemsSource="{Binding LibraryMovie.Videos}">
             <CollectionView.ItemTemplate>

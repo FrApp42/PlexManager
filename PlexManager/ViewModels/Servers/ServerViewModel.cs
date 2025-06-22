@@ -6,7 +6,6 @@ using Newtonsoft.Json;
 using PlexAPI;
 using PlexAPI.Models.Servers;
 using PlexAPI.Services.Interfaces;
-using PlexManager.Models.BindingParameters;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
 
@@ -59,8 +58,8 @@ namespace PlexManager.ViewModels.Servers
 
             try
             {
-                await LoadServerCapabilities();
-                await LoadServerLibraries();
+                await LoadCapabilities();
+                await LoadLibrairies();
                 await LoadUsers();
             }
             finally
@@ -90,7 +89,7 @@ namespace PlexManager.ViewModels.Servers
         [ObservableProperty]
         private ServerCapabilities _capabilities;
 
-        private async Task LoadServerCapabilities()
+        private async Task LoadCapabilities()
         {
             try
             {
@@ -108,59 +107,87 @@ namespace PlexManager.ViewModels.Servers
         #region Librairies
 
         [ObservableProperty]
-        private ServerLibraries _libraries;
+        private bool _isLoadingLibraries = false;
 
         [ObservableProperty]
-        private List<ServerLibraryParameter> _librariesWithServer = [];
+        private ObservableCollection<Library> _libraries = new();
 
-        private async Task LoadServerLibraries()
+
+        //[ObservableProperty]
+        //private List<ServerLibraryParameter> _librariesWithServer = [];
+
+        [RelayCommand]
+        private async Task LoadLibrairies()
         {
+            IsLoadingLibraries = true;
             try
             {
-                ServerLibraries libraries = await _plexAPI.GetServerLibraries(Server);
-
-                LibrariesWithServer.Clear();
-
-                foreach (Library library in libraries.Libraries)
-                {
-                    LibrariesWithServer.Add(new ServerLibraryParameter
-                    {
-                        Server = Server,
-                        Library = library
-                    });
-                }
+                Libraries.Clear();
+                ServerLibraries serverLibs = await _plexAPI.GetServerLibraries(Server);
+                Libraries = serverLibs.Libraries != null 
+                    ? new ObservableCollection<Library>(serverLibs.Libraries.OrderBy(l => l.Title)) 
+                    : new ObservableCollection<Library>();
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
-                Debug.WriteLine(ex);
-                LibrariesWithServer = [];
+                Debug.WriteLine(ex);   
+                //LibrariesWithServer = [];
             }
+            finally
+            {
+                IsLoadingLibraries = false;
+            }
+            
         }
 
+        //private async Task LoadServerLibraries()
+        //{
+        //    try
+        //    {
+        //        ServerLibraries libraries = await _plexAPI.GetServerLibraries(Server);
+
+        //        LibrariesWithServer.Clear();
+
+        //        foreach (Library library in libraries.Libraries)
+        //        {
+        //            LibrariesWithServer.Add(new ServerLibraryParameter
+        //            {
+        //                Server = Server,
+        //                Library = library
+        //            });
+        //        }
+        //    }
+        //    catch(Exception ex)
+        //    {
+        //        Debug.WriteLine(ex);
+        //        LibrariesWithServer = [];
+        //    }
+        //}
+
+        //[RelayCommand]
+        //private async Task UpdateAllLibraries(Server server)
+        //{
+        //    bool updateSuccess = await _plexAPI.UpdateAllServerLibraries(server);
+        //    string message;
+
+        //    if (updateSuccess)
+        //        message = "All libraries are being updated";
+        //    else
+        //        message = "Error while trying to update all libraries";
+
+        //    CancellationTokenSource cancellationTokenSource = new();
+
+        //    IToast toast = Toast.Make(message, ToastDuration.Short, 14);
+        //    await toast.Show(cancellationTokenSource.Token);
+        //}
+
         [RelayCommand]
-        private async Task UpdateAllLibraries(Server server)
+        private async Task NavigateToSingleLibrary(Library parameter)
         {
-            bool updateSuccess = await _plexAPI.UpdateAllServerLibraries(server);
-            string message;
+            string serverJson = JsonConvert.SerializeObject(Server);
+            string libraryJson = JsonConvert.SerializeObject(parameter);
 
-            if (updateSuccess)
-                message = "All libraries are being updated";
-            else
-                message = "Error while trying to update all libraries";
-
-            CancellationTokenSource cancellationTokenSource = new();
-
-            IToast toast = Toast.Make(message, ToastDuration.Short, 14);
-            await toast.Show(cancellationTokenSource.Token);
-        }
-
-        [RelayCommand]
-        private async Task NavigateToSingleLibrary(ServerLibraryParameter parameter)
-        {
-            string serverJson = JsonConvert.SerializeObject(parameter.Server);
-            string libraryJson = JsonConvert.SerializeObject(parameter.Library);
-
-            await Shell.Current.GoToAsync($"{nameof(Views.Servers.SingleLibraryPage)}?server={Uri.EscapeDataString(serverJson)}&library={Uri.EscapeDataString(libraryJson)}");
+            await Shell.Current.GoToAsync($"{nameof(Views.Servers.LibraryPage)}?server={Uri.EscapeDataString(serverJson)}&library={Uri.EscapeDataString(libraryJson)}");
         }
 
         #endregion

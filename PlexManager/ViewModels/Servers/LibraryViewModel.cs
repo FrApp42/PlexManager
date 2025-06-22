@@ -6,22 +6,26 @@ using Newtonsoft.Json;
 using PlexAPI;
 using PlexAPI.Models.Servers;
 using PlexAPI.Services.Interfaces;
+using PlexManager.Models;
+using System.Collections.ObjectModel;
 using System.Diagnostics;
 
 namespace PlexManager.ViewModels.Servers
 {
     [QueryProperty(nameof(ServerJson), "server")]
     [QueryProperty(nameof(LibraryJson), "library")]
-    public partial class SingleLibraryViewModel : ObservableObject
+    public partial class LibraryViewModel : ObservableObject
     {
-        [ObservableProperty]
-        private bool _isLoading = true;
-
+        #region JSON Properties
         [ObservableProperty]
         private string _serverJson;
 
         [ObservableProperty]
         private string _libraryJson;
+        #endregion
+
+        [ObservableProperty]
+        private bool _isLoading = true;
 
         [ObservableProperty]
         private Server _server;
@@ -30,17 +34,11 @@ namespace PlexManager.ViewModels.Servers
         private Library _library;
 
         [ObservableProperty]
-        private LibraryMovie? _libraryMovie;
-
-        [ObservableProperty]
-        private LibraryShow? _libraryTvShow;
-
-        [ObservableProperty]
         private string _pageName;
 
         IPlexAPI _plexAPI;
 
-        public SingleLibraryViewModel(IPlexAPI plexAPI)
+        public LibraryViewModel(IPlexAPI plexAPI)
         {
             _plexAPI = plexAPI;
         }
@@ -155,27 +153,21 @@ namespace PlexManager.ViewModels.Servers
             Library = JsonConvert.DeserializeObject<Library>(value);
         }
 
-        partial void OnServerChanged(Server value)
-        {
-            PageName = $"{value.Name} - ...";
-        }
-
-        partial void OnLibraryChanged(Library value)
-        {
-            PageName = $"{Server.Name} - {value.Title}";
-        }
-
         public async void Loaded(object? sender, NavigatedToEventArgs e)
         {
-            IsLoading = true;
-
-            try
+            switch (Library.Type)
             {
-                await LoadLibraryDetails();
-            }
-            finally
-            {
-                IsLoading = false;
+                case "movie":
+                    PageName = $"{Server.Name} - {Library.Title} (Movies)";
+                    Task.Run(async () => await LoadMovies());
+                    break;
+                case "show":
+                    PageName = $"{Server.Name} - {Library.Title} (TV Shows)";
+                    Task.Run(async () => await LoadTvShows());
+                    break;
+                default:
+                    PageName = $"{Server.Name} - {Library.Title}";
+                    break;
             }
         }
 
@@ -184,50 +176,112 @@ namespace PlexManager.ViewModels.Servers
             IsLoading = true;
         }
 
-        private async Task LoadLibraryDetails()
+
+        [RelayCommand]
+        private async Task RefreshLibrary()
+        {
+            switch (Library.Type)
+            {
+                case "movie":
+                    await LoadMovies();
+                    break;
+                case "show":
+                    await LoadTvShows();
+                    break;
+            }
+
+        }
+
+        [ObservableProperty]
+        private ObservableCollection<Media> _medias = new();
+
+        private async Task LoadMovies()
         {
             string? oauthToken = await SecureStorage.Default.GetAsync("oauth_token");
 
-            if (string.IsNullOrEmpty(oauthToken))
-            {
-                await Shell.Current.GoToAsync(nameof(Views.Tokens.ClaimPage));
-                return;
-            }
-
-            LibraryMovie = null;
-            LibraryTvShow = null;
-
+            Debug.WriteLine("Loading movies");
+            IsLoading  = true;
+            Medias.Clear();
             try
             {
-                switch (Library.Type)
+                LibraryMovie libMovies = await _plexAPI.GetLibraryMovieDetails(Server, Library);
+                if(libMovies == null || libMovies.Videos == null)
                 {
-                    case "movie":
-                        LibraryMovie = await _plexAPI.GetLibraryMovieDetails(Server, Library);
+                    Debug.WriteLine("No movies found in the library.");
+                    return;
+                }
 
-                        if (LibraryMovie != null)
-                        {
-                            foreach (LibraryMovieVideo video in LibraryMovie.Videos)
-                            {
-                                video.ThumbUrl = new Uri($"{Server.FullUri}{video.Thumb}?X-Plex-Token={oauthToken}");
-                            }
-                        }
-                        break;
-                    case "show":
-                        LibraryTvShow = await _plexAPI.GetLibraryShowDetails(Server, Library);
+                List<Media> medias = new();
+                foreach (LibraryMovieVideo video in libMovies.Videos)
+                {
+                    if (video == null) continue;
+                    Media media = new()
+                    {
+                        Title = video.Title,
+                        ThumbUrl = new Uri($"{Server.FullUri}{video.Thumb}?X-Plex-Token={oauthToken}"),
+                        Year = video.Year,
+                        Duration = video.Duration,
+                        Rating = video.Rating,
+                        Summary = video.Summary,
+                        MediaType = "Movie",
+                        Key = video.Key
+                    };
+                    medias.Add(media);
+                }
 
-                        foreach (LibraryShowDirectory directory in LibraryTvShow.Directories)
-                        {
-                            directory.ThumbUrl = new Uri($"{Server.FullUri}{directory.Thumb}?X-Plex-Token={oauthToken}");
-                        }
-                        break;
+                Medias = new ObservableCollection<Media>(medias.OrderBy(m => m.Title));
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine($"Error loading movies: {ex.Message}");
+            }
+            finally
+            {
+                IsLoading = false;
+            }
+        }
+
+        private async Task LoadTvShows()
+        {
+            string? oauthToken = await SecureStorage.Default.GetAsync("oauth_token");
+
+            Debug.WriteLine("Loading shows");
+            IsLoading = true;
+            Medias.Clear();
+            try
+            {
+                LibraryShow libShows = await _plexAPI.GetLibraryShowDetails(Server, Library);
+                if (libShows == null || libShows.Directories == null)
+                {
+                    Debug.WriteLine("No TV shows found in the library.");
+                    return;
+                }
+
+                foreach (LibraryShowDirectory show in libShows.Directories)
+                {
+                    if (show == null) continue;
+                    Media media = new()
+                    {
+                        Title = show.Title,
+                        ThumbUrl = new Uri($"{Server.FullUri}{show.Thumb}?X-Plex-Token={oauthToken}"),
+                        Year = show.Year,
+                        Duration = show.Duration,
+                        Rating = show.AudienceRating,
+                        Summary = show.Summary,
+                        MediaType = "TV Show",
+                        Key = show.Key
+                    };
+                    Medias.Add(media);
                 }
             }
             catch (Exception ex)
             {
-                Debug.WriteLine($"Error loading library details: {ex.Message}");
+                Debug.WriteLine($"Error loading TV shows: {ex.Message}");
+            }
+            finally
+            {
+                IsLoading = false;
             }
         }
-
-        
     }
 }

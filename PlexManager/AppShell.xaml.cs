@@ -20,7 +20,7 @@ namespace PlexManager
 
             // Server Pages
             Routing.RegisterRoute(nameof(ServerPage), typeof(ServerPage));
-            Routing.RegisterRoute(nameof(SingleLibraryPage), typeof(SingleLibraryPage));            
+            Routing.RegisterRoute(nameof(LibraryPage), typeof(LibraryPage));            
         }
     }
 }

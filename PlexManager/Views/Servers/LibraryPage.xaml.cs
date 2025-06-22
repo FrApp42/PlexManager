@@ -3,9 +3,9 @@ using PlexManager.ViewModels.Servers;
 
 namespace PlexManager.Views.Servers;
 
-public partial class SingleLibraryPage : ContentPage
+public partial class LibraryPage : ContentPage
 {
-	public SingleLibraryPage(SingleLibraryViewModel viewModel)
+	public LibraryPage(LibraryViewModel viewModel)
 	{
 		InitializeComponent();
 

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="PlexManager.Components.Buttons.CustomButton"
+             xmlns:mi="http://www.aathifmahir.com/dotnet/2022/maui/icons"
+             x:Name="Root">
+    <Grid Margin="0,7,0,0" ColumnDefinitions="Auto,*,Auto">
+
+        <Grid.GestureRecognizers>
+            <TapGestureRecognizer
+                Command="{Binding Source={x:Reference Root}, Path=Command}"
+                CommandParameter="{Binding Source={x:Reference Root}, Path=CommandParameter}" 
+                />
+        </Grid.GestureRecognizers>
+        
+        <Image Grid.Column="0"
+               Source="{Binding Source={x:Reference Root}, Path=Icon}"
+               Aspect="AspectFit"
+               VerticalOptions="Center" />
+
+        <Label
+            Grid.Column="1"
+            Margin="5,0,0,0"
+            Text="{Binding Source={x:Reference Root}, Path=Text}"
+            VerticalOptions="Center" />
+
+        <ImageButton
+            Grid.Column="2"
+            Source="{mi:Material ChevronRight}" />
+
+    </Grid>
+</ContentView>

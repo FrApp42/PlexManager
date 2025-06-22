@@ -3,7 +3,7 @@
              xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:vm="clr-namespace:PlexManager.ViewModels.Servers"
-             x:DataType="vm:SingleLibraryViewModel">
+             x:DataType="vm:LibraryViewModel">
     <Border Margin="10,5,10,5"
             Padding="15"
             StrokeShape="RoundRectangle 5">

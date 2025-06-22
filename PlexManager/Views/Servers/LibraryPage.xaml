@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage x:Class="PlexManager.Views.Servers.LibraryPage"
+             xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:actions="clr-namespace:PlexManager.Components.QuickActions"
+             xmlns:helpers="clr-namespace:PlexManager.Helpers"
+             xmlns:mi="http://www.aathifmahir.com/dotnet/2022/maui/icons"
+             xmlns:plexservermodels="clr-namespace:PlexAPI.Models.Servers;assembly=PlexAPI"
+             xmlns:ffimageloading="clr-namespace:FFImageLoading.Maui;assembly=FFImageLoading.Maui"
+             xmlns:vm="clr-namespace:PlexManager.ViewModels.Servers"
+             Title="{Binding PageName}"
+             x:DataType="vm:LibraryViewModel">
+    <ContentPage.Resources>
+        <helpers:IconTypeConverter x:Key="IconTypeConverter" />
+        <helpers:EqualityConverter x:Key="EqualityConverter" />
+        <helpers:NullToBooleanConverter x:Key="NullToBooleanConverter" />
+    </ContentPage.Resources>
+
+    <Grid Margin="0,5,0,5" RowDefinitions="Auto,*">
+
+        <!--#region Quick Actions -->
+        
+        <Border
+            Grid.Row="0"
+            Margin="10,5,10,5"
+            Padding="15"
+            StrokeShape="RoundRectangle 5">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+
+                <Label Grid.Row="0"
+               Margin="0,0,0,0"
+               FontSize="Medium"
+               HorizontalOptions="Center"
+               Text="Quick actions" />
+
+                <Grid Grid.Row="1"
+              Margin="0,10,0,5">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+
+                    <Button Grid.Column="0"
+                    Margin="0,0,5,0"
+                    CornerRadius="4"
+                    Text="Scan"
+                    Command="{Binding ScanLibraryCommand}" />
+
+                    <Button Grid.Column="1"
+                    Margin="5,0,0,0"
+                    CornerRadius="4"
+                    Text="Update metadata"
+                    Command="{Binding UpdateLibraryMetadataCommand}" />
+                </Grid>
+
+                <Button Grid.Row="2"
+                Margin="0,5,0,0"
+                CornerRadius="4"
+                Text="Empty trash"
+                Command="{Binding EmptyLibraryTrashCommand}" />
+            </Grid>
+        </Border>
+
+        <!--#endregion-->
+        
+        <!--#region Medias -->
+        
+        <Border 
+            Grid.Row="1"
+            Margin="10,5,10,5"
+            Padding="15"
+            StrokeShape="RoundRectangle 5">
+            <Grid RowDefinitions="Auto,*">
+                <Label 
+                    Grid.Row="0"
+                    Margin="0,0,0,0"
+                    FontSize="Medium"
+                    HorizontalOptions="Center"
+                    Text="Medias" />
+
+                <RefreshView
+                    Grid.Row="1"
+                    IsRefreshing="{Binding IsLoading}"
+                    Command="{Binding RefreshLibraryCommand}">
+                    <CollectionView ItemsSource="{Binding Medias}">
+                        <CollectionView.ItemTemplate>
+                            <DataTemplate x:DataType="plexservermodels:LibraryMovieVideo">
+                                <Grid Margin="0,5,0,5">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="50" />
+                                        <ColumnDefinition Width="*" />
+                                        <ColumnDefinition Width="Auto" />
+                                    </Grid.ColumnDefinitions>
+
+                                    <ffimageloading:CachedImage Aspect="AspectFit"
+                                        CacheDuration="30:00:00:00"
+                                        DownsampleToViewSize="True"
+                                        HeightRequest="50"
+                                        Source="{Binding ThumbUrl}" />
+
+                                    <Label Grid.Column="1"
+                                       Margin="5,0,0,0"
+                                       Text="{Binding Title}"
+                                       VerticalOptions="Center" />
+
+                                    <ImageButton Grid.Column="2" Source="{mi:Material ChevronRight}" />
+                                </Grid>
+                            </DataTemplate>
+                        </CollectionView.ItemTemplate>
+                    </CollectionView>
+                </RefreshView>
+            </Grid>
+        </Border>
+        
+        <!--#endregion-->
+    </Grid>
+</ContentPage>
