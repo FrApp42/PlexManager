@@ -8,48 +8,55 @@
              xmlns:vm="clr-namespace:PlexManager.ViewModels"
              Title="ServersPage"
              x:DataType="vm:ServersViewModel">
-    <ScrollView>
-        <VerticalStackLayout Spacing="25">
-            <CollectionView ItemsSource="{Binding Servers}">
-                <CollectionView.ItemTemplate>
-                    <DataTemplate x:DataType="plexapi:Server">
-                        <Border Margin="10"
-                                Padding="15"
-                                StrokeShape="RoundRectangle 5">
-                            <Grid Margin="-5,0,0,0">
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="60" />
-                                    <ColumnDefinition Width="*" />
-                                    <ColumnDefinition Width="20" />
-                                </Grid.ColumnDefinitions>
+    <RefreshView 
+        IsRefreshing="{Binding IsLoading}"
+        Command="{Binding LoadServersCommand}"
+        >
+        <ScrollView>
+            <VerticalStackLayout Spacing="25">
 
-                                <Image Grid.Column="0"
-                                       Aspect="Center"
-                                       Source="{mi:Material Dns}" />
+                <CollectionView ItemsSource="{Binding Servers}">
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate x:DataType="plexapi:Server">
+                            <Border Margin="10"
+                                    Padding="15"
+                                    StrokeShape="RoundRectangle 5">
+                                <Grid Margin="-5,0,0,0">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="60" />
+                                        <ColumnDefinition Width="*" />
+                                        <ColumnDefinition Width="20" />
+                                    </Grid.ColumnDefinitions>
 
-                                <VerticalStackLayout Grid.Column="1"
-                                                     Margin="15,0,0,0"
-                                                     VerticalOptions="Center">
-                                    <Label FontSize="18"
-                                           Text="{Binding Name}"
-                                           TextColor="Gray" />
+                                    <Image Grid.Column="0"
+                                           Aspect="Center"
+                                           Source="{mi:Material Dns}" />
 
-                                    <Label FontSize="14"
-                                           Text="{Binding FullUri}"
-                                           TextColor="Gray" />
-                                </VerticalStackLayout>
+                                    <VerticalStackLayout Grid.Column="1"
+                                                         Margin="15,0,0,0"
+                                                         VerticalOptions="Center">
+                                        <Label FontSize="18"
+                                               Text="{Binding Name}"
+                                               TextColor="Gray" />
 
-                                <ImageButton Grid.Column="2"
-                                             Aspect="Center"
-                                             Command="{Binding Source={RelativeSource AncestorType={x:Type vm:ServersViewModel}}, Path=NavigateToServerCommand}"
-                                             CommandParameter="{Binding}"
-                                             HorizontalOptions="End"
-                                             Source="{mi:Material ArrowForwardIos}" />
-                            </Grid>
-                        </Border>
-                    </DataTemplate>
-                </CollectionView.ItemTemplate>
-            </CollectionView>
-        </VerticalStackLayout>
-    </ScrollView>
+                                        <Label FontSize="14"
+                                               Text="{Binding FullUri}"
+                                               TextColor="Gray" />
+                                    </VerticalStackLayout>
+
+                                    <ImageButton Grid.Column="2"
+                                                 Aspect="Center"
+                                                 Command="{Binding Source={RelativeSource AncestorType={x:Type vm:ServersViewModel}}, Path=NavigateToServerCommand}"
+                                                 CommandParameter="{Binding}"
+                                                 HorizontalOptions="End"
+                                                 Source="{mi:Material ArrowForwardIos}" />
+                                </Grid>
+                            </Border>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+                
+            </VerticalStackLayout>
+        </ScrollView>
+    </RefreshView>
 </ContentPage>

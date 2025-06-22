@@ -122,22 +122,22 @@
 	  <MauiXaml Update="Views\ClaimTokenPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="Views\Components\IdentityBlock.xaml">
+	  <MauiXaml Update="Components\Blocks\Identity.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="Views\Components\LibrariesBlock.xaml">
+	  <MauiXaml Update="Components\Blocks\Libraries.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="Views\Components\LibraryQuickActions.xaml">
+	  <MauiXaml Update="Components\QuickActions\Library.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="Views\Components\MovieMedias.xaml">
+	  <MauiXaml Update="Components\Medias\Movie.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="Views\Components\TvShowMedias.xaml">
+	  <MauiXaml Update="Components\Medias\TvShow.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="Views\Components\UserListBlock.xaml">
+	  <MauiXaml Update="Components\Blocks\UserList.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Views\ServersPage.xaml">
@@ -155,14 +155,29 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <Compile Update="Components\Blocks\Identity.xaml.cs">
+	    <DependentUpon>Identity.xaml</DependentUpon>
+	  </Compile>
+	  <Compile Update="Components\Blocks\Libraries.xaml.cs">
+	    <DependentUpon>Libraries.xaml</DependentUpon>
+	  </Compile>
+	  <Compile Update="Components\Medias\Movie.xaml.cs">
+	    <DependentUpon>Movie.xaml</DependentUpon>
+	  </Compile>
+	  <Compile Update="Components\Medias\TvShow.xaml.cs">
+	    <DependentUpon>TvShow.xaml</DependentUpon>
+	  </Compile>
+	  <Compile Update="Components\QuickActions\Library.xaml.cs">
+	    <DependentUpon>Library.xaml</DependentUpon>
+	  </Compile>
 	  <Compile Update="Views\AboutPage.xaml.cs">
 	    <DependentUpon>AboutPage.xaml</DependentUpon>
 	  </Compile>
 	  <Compile Update="Views\ClaimTokenPage.xaml.cs">
 	    <DependentUpon>ClaimTokenPage.xaml</DependentUpon>
 	  </Compile>
-	  <Compile Update="Views\Components\UserListBlock.xaml.cs">
-	    <DependentUpon>UserListBlock.xaml</DependentUpon>
+	  <Compile Update="Components\Blocks\UserList.xaml.cs">
+	    <DependentUpon>UserList.xaml</DependentUpon>
 	  </Compile>
 	  <Compile Update="Views\SingleLibraryPage.xaml.cs">
 	    <DependentUpon>SingleLibraryPage.xaml</DependentUpon>

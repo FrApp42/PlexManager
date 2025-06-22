@@ -7,6 +7,7 @@ using PlexAPI;
 using PlexAPI.Models.Servers;
 using PlexAPI.Services.Interfaces;
 using PlexManager.Views;
+using System.Diagnostics;
 using static Android.Provider.MediaStore;
 
 namespace PlexManager.ViewModels
@@ -125,6 +126,7 @@ namespace PlexManager.ViewModels
             }
             catch (Exception ex)
             {
+                Debug.WriteLine($"Error loading library details: {ex.Message}");
             }
         }
 

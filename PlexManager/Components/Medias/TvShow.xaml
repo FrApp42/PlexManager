@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<ContentView x:Class="PlexManager.Views.Components.MovieMedias"
+<ContentView x:Class="PlexManager.Components.Medias.TvShow"
              xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:ffimageloading="clr-namespace:FFImageLoading.Maui;assembly=FFImageLoading.Maui"
@@ -8,9 +8,9 @@
              xmlns:vm="clr-namespace:PlexManager.ViewModels"
              x:DataType="vm:SingleLibraryViewModel">
     <VerticalStackLayout>
-        <CollectionView ItemsSource="{Binding LibraryMovie.Videos}">
+        <CollectionView ItemsSource="{Binding LibraryTvShow.Directories}">
             <CollectionView.ItemTemplate>
-                <DataTemplate x:DataType="plexservermodels:LibraryMovieVideo">
+                <DataTemplate x:DataType="plexservermodels:LibraryShowDirectory">
                     <Grid Margin="0,5,0,5">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="50" />

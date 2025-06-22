@@ -1,6 +1,7 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using PlexManager.Models;
+using System.Diagnostics;
 
 namespace PlexManager.ViewModels
 {
@@ -70,6 +71,7 @@ namespace PlexManager.ViewModels
             catch (Exception ex)
             {
                 // An unexpected error occurred. No browser may be installed on the device.
+                Debug.WriteLine($"Error opening URL: {ex.Message}");
             }
         }
     }

@@ -16,12 +16,21 @@
                         Padding="15"
                         StrokeShape="RoundRectangle 5">
                     <Grid>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition />
-                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
 
-                        <Button Command="{Binding LogoutCommand}"
+                        <VerticalStackLayout Grid.Row="0">
+                            <Label Margin="0,0,0,10"
+                                   FontSize="Medium"
+                                   HorizontalOptions="Center"
+                                   Text="{Binding Account.Username}" />
+
+                            <Button Command="{Binding LogoutCommand}"
                                 Text="Logout" />
+                        </VerticalStackLayout>
+                        
+                        
                     </Grid>
                 </Border>
             </VerticalStackLayout>

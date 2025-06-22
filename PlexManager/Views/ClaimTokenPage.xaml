@@ -35,7 +35,6 @@
                    Margin="0,0,0,8"
                    FontAttributes="Bold"
                    HorizontalOptions="Center"
-                   Style="{StaticResource LargeLabel}"
                    Text="First Start"
                    TextColor="White" />
 

@@ -12,6 +12,8 @@ namespace PlexAPI.Services.Interfaces
 
         public Task<bool> Ping(string oauth);
 
+        public Task<Account> GetAccount();
+
         public Task<List<Server>> GetServers();
 
         public Task<ServerCapabilities?> GetServerCapabilities(Server server);

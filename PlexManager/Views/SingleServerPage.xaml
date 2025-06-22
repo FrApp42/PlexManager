@@ -2,7 +2,7 @@
 <ContentPage x:Class="PlexManager.Views.SingleServerPage"
              xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:components="clr-namespace:PlexManager.Views.Components"
+             xmlns:blocks="clr-namespace:PlexManager.Components.Blocks"
              xmlns:helpers="clr-namespace:PlexManager.Helpers"
              xmlns:vm="clr-namespace:PlexManager.ViewModels"
              Title="{Binding Server.Name}"
@@ -25,11 +25,11 @@
                     Margin="0,5,0,5"
                     IsVisible="{Binding IsLoading, Converter={StaticResource InverseBooleanConverter}}">
             <VerticalStackLayout>
-                <components:IdentityBlock />
+                <blocks:Identity />
 
-                <components:LibrariesBlock />
+                <blocks:Libraries/>
 
-                <components:UserListBlock />
+                <blocks:UserList />
             </VerticalStackLayout>
         </ScrollView>
     </Grid>

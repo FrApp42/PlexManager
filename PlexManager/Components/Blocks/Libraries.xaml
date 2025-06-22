@@ -1,16 +1,23 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<ContentView x:Class="PlexManager.Views.Components.UserListBlock"
+<ContentView x:Class="PlexManager.Components.Blocks.Libraries"
              xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:bindparams="clr-namespace:PlexManager.Models.BindingParameters"
+             xmlns:helpers="clr-namespace:PlexManager.Helpers"
              xmlns:mi="http://www.aathifmahir.com/dotnet/2022/maui/icons"
              xmlns:plexservermodels="clr-namespace:PlexAPI.Models.Servers;assembly=PlexAPI"
              xmlns:vm="clr-namespace:PlexManager.ViewModels"
              x:DataType="vm:SingleServerViewModel">
+    <ContentView.Resources>
+        <helpers:IconTypeConverter x:Key="IconTypeConverter" />
+    </ContentView.Resources>
+
     <Border Margin="10,5,10,5"
             Padding="15"
             StrokeShape="RoundRectangle 5">
         <Grid>
             <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="Auto" />
             </Grid.RowDefinitions>
@@ -19,13 +26,20 @@
                    Margin="0,0,0,10"
                    FontSize="Medium"
                    HorizontalOptions="Center"
-                   Text="Users" />
+                   Text="Libraries" />
 
-            <VerticalStackLayout Grid.Row="1"
+            <Button Grid.Row="1"
+                    Command="{Binding Source={RelativeSource AncestorType={x:Type vm:SingleServerViewModel}}, Path=UpdateAllLibrariesCommand}"
+                    CommandParameter="{Binding Server}"
+                    CornerRadius="4"
+                    Text="Update all" />
+
+            <VerticalStackLayout Grid.Row="2"
                                  Margin="0,5,0,0">
-                <CollectionView ItemsSource="{Binding UserList.Users}">
+                <CollectionView ItemSizingStrategy="MeasureAllItems"
+                                ItemsSource="{Binding LibrariesWithServer}">
                     <CollectionView.ItemTemplate>
-                        <DataTemplate x:DataType="plexservermodels:User">
+                        <DataTemplate x:DataType="bindparams:ServerLibraryParameter">
                             <Grid Margin="0,7,0,0" Row="0">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="Auto" />
@@ -34,15 +48,17 @@
                                 </Grid.ColumnDefinitions>
 
                                 <mi:MauiIcon Grid.Column="0"
-                                             Icon="{mi:Material Person}"
+                                             Icon="{Binding Library.Type, Converter={StaticResource IconTypeConverter}, Mode=OneWay}"
                                              VerticalOptions="Center" />
 
                                 <Label Grid.Column="1"
                                        Margin="5,0,0,0"
-                                       Text="{Binding Name}"
+                                       Text="{Binding Library.Title}"
                                        VerticalOptions="Center" />
 
                                 <ImageButton Grid.Column="2"
+                                             Command="{Binding Source={RelativeSource AncestorType={x:Type vm:SingleServerViewModel}}, Path=NavigateToSingleLibraryCommand}"
+                                             CommandParameter="{Binding}"
                                              Source="{mi:Material ChevronRight}" />
                             </Grid>
                         </DataTemplate>

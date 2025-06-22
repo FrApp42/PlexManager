@@ -84,6 +84,25 @@ namespace PlexAPI.Services
             return false;
         }
 
+        public async Task<Account> GetAccount()
+        {
+            if (_account == null)
+                throw new Exception("You must Authenticate first !");
+
+            ApiRequest request = new ApiRequest(URLs.User);
+            request
+                .AddPlexClientIdentifier()
+                .AddPlexToken(_account.AuthToken);
+
+            Result<Account> result = await request.Run<Account>();
+            if (result.StatusCode == (int)HttpStatusCode.OK)
+            {
+                _account = result.Value;                
+            }
+
+            return _account;
+        }
+
         public async Task<List<Server>> GetServers()
         {
             if (_account == null)

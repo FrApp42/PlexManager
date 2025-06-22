@@ -1,10 +1,10 @@
 using MauiIcons.Core;
 
-namespace PlexManager.Views.Components
+namespace PlexManager.Components.Blocks
 {
-    public partial class LibrariesBlock : ContentView
+    public partial class Libraries : ContentView
     {
-        public LibrariesBlock()
+        public Libraries()
         {
             InitializeComponent();
 

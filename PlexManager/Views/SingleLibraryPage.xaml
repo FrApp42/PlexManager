@@ -2,7 +2,8 @@
 <ContentPage x:Class="PlexManager.Views.SingleLibraryPage"
              xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:components="clr-namespace:PlexManager.Views.Components"
+             xmlns:actions="clr-namespace:PlexManager.Components.QuickActions"
+             xmlns:medias="clr-namespace:PlexManager.Components.Medias"
              xmlns:helpers="clr-namespace:PlexManager.Helpers"
              xmlns:mi="http://www.aathifmahir.com/dotnet/2022/maui/icons"
              xmlns:plexservermodels="clr-namespace:PlexAPI.Models.Servers;assembly=PlexAPI"
@@ -29,7 +30,7 @@
 
         <ScrollView Grid.Row="0">
             <VerticalStackLayout>
-                <components:LibraryQuickActions />
+                <actions:Library />
 
                 <Border Margin="10,5,10,5"
                         Padding="15"
@@ -46,10 +47,10 @@
                                HorizontalOptions="Center"
                                Text="Medias" />
 
-                        <components:MovieMedias Grid.Row="1"
+                        <medias:Movie Grid.Row="1"
                                                 IsVisible="{Binding LibraryMovie, Converter={StaticResource NullToBooleanConverter}}" />
 
-                        <components:TvShowMedias Grid.Row="1"
+                        <medias:TvShow Grid.Row="1"
                                                  IsVisible="{Binding LibraryTvShow, Converter={StaticResource NullToBooleanConverter}}" />
                     </Grid>
                 </Border>
