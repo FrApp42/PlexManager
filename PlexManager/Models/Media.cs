@@ -10,5 +10,6 @@
         public string Summary { get; set; }
         public string MediaType { get; set; }
         public string Key { get; set; }
+        public int? Season { get; set; }
     }
 }

@@ -46,39 +46,39 @@
 
 	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net8.0-maccatalyst|AnyCPU'">
 	  <ApplicationId>fr.frapp42.plexmanager</ApplicationId>
-	  <ApplicationDisplayVersion>0.2</ApplicationDisplayVersion>
+	  <ApplicationDisplayVersion>0.3</ApplicationDisplayVersion>
 	</PropertyGroup>
 
 	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net8.0-android34.0|AnyCPU'">
 	  <ApplicationId>fr.frapp42.plexmanager</ApplicationId>
-	  <ApplicationDisplayVersion>0.2</ApplicationDisplayVersion>
+	  <ApplicationDisplayVersion>0.3</ApplicationDisplayVersion>
 	  <ApplicationVersion>2</ApplicationVersion>
 	</PropertyGroup>
 
 	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net8.0-windows10.0.19041.0|AnyCPU'">
 	  <ApplicationId>fr.frapp42.plexmanager</ApplicationId>
-	  <ApplicationDisplayVersion>0.2</ApplicationDisplayVersion>
+	  <ApplicationDisplayVersion>0.3</ApplicationDisplayVersion>
 	</PropertyGroup>
 
 	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net8.0-ios|AnyCPU'">
 	  <ApplicationId>fr.frapp42.plexmanager</ApplicationId>
-	  <ApplicationDisplayVersion>0.2</ApplicationDisplayVersion>
+	  <ApplicationDisplayVersion>0.3</ApplicationDisplayVersion>
 	</PropertyGroup>
 
 	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net8.0-maccatalyst|AnyCPU'">
 	  <ApplicationId>fr.frapp42.plexmanager</ApplicationId>
-	  <ApplicationDisplayVersion>0.2</ApplicationDisplayVersion>
+	  <ApplicationDisplayVersion>0.3</ApplicationDisplayVersion>
 	</PropertyGroup>
 
 	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net8.0-android34.0|AnyCPU'">
 	  <ApplicationId>fr.frapp42.plexmanager</ApplicationId>
-	  <ApplicationDisplayVersion>0.2</ApplicationDisplayVersion>
+	  <ApplicationDisplayVersion>0.3</ApplicationDisplayVersion>
 	  <ApplicationVersion>2</ApplicationVersion>
 	</PropertyGroup>
 
 	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net8.0-windows10.0.19041.0|AnyCPU'">
 	  <ApplicationId>fr.frapp42.plexmanager</ApplicationId>
-	  <ApplicationDisplayVersion>0.2</ApplicationDisplayVersion>
+	  <ApplicationDisplayVersion>0.3</ApplicationDisplayVersion>
 	</PropertyGroup>
 
 	<ItemGroup>
@@ -140,6 +140,9 @@
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Views\AboutPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\Servers\MediaPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Views\Tokens\ClaimPage.xaml">

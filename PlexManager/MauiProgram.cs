@@ -49,25 +49,32 @@ namespace PlexManager
             var services = builder.Services;
             services
                 .AddSingleton<IConnectivity>(Connectivity.Current)
-                .AddSingleton<ServersPage>()
-                .AddSingleton<ServersViewModel>()
-                .AddSingleton<AboutPage>()
-                .AddSingleton<AboutViewModel>()
+                // Token page
                 .AddSingleton<ClaimPage>()
                 .AddSingleton<ClaimViewModel>()
-                .AddSingleton<ServerPage>()
-                .AddSingleton<ServerViewModel>()
+
+                // Global pages
+                .AddSingleton<ServersPage>()
+                .AddSingleton<ServersViewModel>()
                 .AddSingleton<SettingsPage>()
                 .AddSingleton<SettingsViewModel>()
+                .AddSingleton<AboutPage>()
+                .AddSingleton<AboutViewModel>()
+
+                // Server pages
+                .AddSingleton<ServerPage>()
+                .AddSingleton<ServerViewModel>()                
                 .AddSingleton<LibraryPage>()
                 .AddSingleton<LibraryViewModel>()
-                //.AddSingleton(apiOptions)
-                //.AddTransient<IPlexServerClient, PlexServerClient>()
-                //.AddTransient<IPlexAccountClient, PlexAccountClient>()
-                //.AddTransient<IPlexLibraryClient, PlexLibraryClient>()
-                //.AddTransient<IApiService, ApiService>()
-                //.AddTransient<IPlexFactory, PlexFactory>()
-                //.AddTransient<IPlexRequestsHttpClient, PlexRequestsHttpClient>()
+                .AddSingleton<MediaPage>()
+                .AddSingleton<MediaViewModel>()
+            //.AddSingleton(apiOptions)
+            //.AddTransient<IPlexServerClient, PlexServerClient>()
+            //.AddTransient<IPlexAccountClient, PlexAccountClient>()
+            //.AddTransient<IPlexLibraryClient, PlexLibraryClient>()
+            //.AddTransient<IApiService, ApiService>()
+            //.AddTransient<IPlexFactory, PlexFactory>()
+            //.AddTransient<IPlexRequestsHttpClient, PlexRequestsHttpClient>()
             ;
 
 #if DEBUG

@@ -92,6 +92,12 @@
                         <CollectionView.ItemTemplate>
                             <DataTemplate x:DataType="plexservermodels:LibraryMovieVideo">
                                 <Grid Margin="0,5,0,5">
+                                    <Grid.GestureRecognizers>
+                                        <TapGestureRecognizer
+                                            Command="{Binding Source={RelativeSource AncestorType={x:Type vm:LibraryViewModel}}, Path=GoToMediaDetailsCommand}"
+                                            CommandParameter="{Binding}" />
+                                    </Grid.GestureRecognizers>
+                                    
                                     <Grid.ColumnDefinitions>
                                         <ColumnDefinition Width="50" />
                                         <ColumnDefinition Width="*" />

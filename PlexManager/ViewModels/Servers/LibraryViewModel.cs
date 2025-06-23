@@ -268,8 +268,9 @@ namespace PlexManager.ViewModels.Servers
                         Duration = show.Duration,
                         Rating = show.AudienceRating,
                         Summary = show.Summary,
-                        MediaType = "TV Show",
-                        Key = show.Key
+                        MediaType = "show",
+                        Key = show.Key,
+                        Season = show.ChildCount
                     };
                     Medias.Add(media);
                 }
@@ -283,5 +284,17 @@ namespace PlexManager.ViewModels.Servers
                 IsLoading = false;
             }
         }
+
+        #region Medias
+
+        [RelayCommand]
+        private async Task GoToMediaDetails(Media media)
+        {
+            if (media == null) return;
+            string mediaJson = JsonConvert.SerializeObject(media);
+            await Shell.Current.GoToAsync($"{nameof(Views.Servers.MediaPage)}?media={Uri.EscapeDataString(mediaJson)}");
+        }
+
+        #endregion
     }
 }
