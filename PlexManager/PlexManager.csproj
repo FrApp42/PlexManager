@@ -52,6 +52,7 @@
 	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net8.0-android34.0|AnyCPU'">
 	  <ApplicationId>fr.frapp42.plexmanager</ApplicationId>
 	  <ApplicationDisplayVersion>0.2</ApplicationDisplayVersion>
+	  <ApplicationVersion>2</ApplicationVersion>
 	</PropertyGroup>
 
 	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net8.0-windows10.0.19041.0|AnyCPU'">
@@ -72,6 +73,7 @@
 	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net8.0-android34.0|AnyCPU'">
 	  <ApplicationId>fr.frapp42.plexmanager</ApplicationId>
 	  <ApplicationDisplayVersion>0.2</ApplicationDisplayVersion>
+	  <ApplicationVersion>2</ApplicationVersion>
 	</PropertyGroup>
 
 	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net8.0-windows10.0.19041.0|AnyCPU'">

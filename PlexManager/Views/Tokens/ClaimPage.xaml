@@ -59,7 +59,7 @@
                        FontSize="18"
                        Text="2FA" />
 
-                <Entry Keyboard="Numeric"
+                <Entry Keyboard="Telephone"
                        Text="{Binding Mfa}" />
 
                 <Button Command="{Binding RunAuthCommand}"

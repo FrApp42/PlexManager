@@ -21,7 +21,7 @@ namespace PlexManager.ViewModels.Tokens
         string _password = string.Empty;
 
         [ObservableProperty]
-        int? _mfa;
+        string? _mfa;
 
         [RelayCommand]
         async Task RunAuth()
@@ -29,7 +29,7 @@ namespace PlexManager.ViewModels.Tokens
 
             try
             {
-                bool isConnected = await _plexAPI.Auth(Username, Password, Mfa.ToString());
+                bool isConnected = await _plexAPI.Auth(Username, Password, Mfa);
 
                 if (isConnected)
                 {
@@ -40,25 +40,7 @@ namespace PlexManager.ViewModels.Tokens
             catch (Exception ex)
             {
                 Console.WriteLine(ex.Message);
-            }
-
-            //    await SecureStorage.Default.SetAsync("oauth_token", Token);
-            //using(SQLiteContext db = new SQLiteContext())
-            //{
-            //    db.Add(new Setting()
-            //    {
-            //        Name = "server",
-            //        Value = Server
-            //    });
-
-            //    db.Add(new Setting()
-            //    {
-            //        Name = "port",
-            //        Value = Server
-            //    });
-            //}
-
-            
+            }            
         }
     }
 }
